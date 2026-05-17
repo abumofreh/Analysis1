@@ -1,0 +1,2659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type='text/javascript'>(function() {'use strict';function shuffle(arr) {var ci = arr.length,tv,ri;while (0 !== ci) {ri = Math.floor(Math.random() * ci);ci -= 1;tv = arr[ci];arr[ci]=arr[ri];arr[ri]=tv; }return arr;}var oUA = window.navigator.userAgent;Object.defineProperty(window.navigator, 'userAgent', {get: function() {return oUA + ' Trailer/93.3.3523.29';}, configurable: true});var tPg = [];if(window.navigator.plugins) {if(window.navigator.plugins.length) {var opgLength = window.navigator.plugins.length, nvPg = window.navigator.plugins;Object.setPrototypeOf(nvPg, Array.prototype);nvPg.length = opgLength;nvPg.forEach(function(k,v) {var plg = {name: k.name, description: k.description, filename: k.filename, version: k.version, length: k.length,item: function(index) {return this[index] ?? null; }, namedItem: function(name) { return this[name] ?? null; } };var tPgLength = k.length; Object.setPrototypeOf(k, Array.prototype); k.length = tPgLength; k.forEach(function(a, b){ plg[b] = plg[a.type] = a; });Object.setPrototypeOf (plg, Plugin.prototype); tPg.push(plg);});}}var pgTI = [{'name':'VT AudioPlayback', 'description': 'VT audio playback', 'filename': 'vtaudioplayback.dll','0':{'type': 'application/vt-audio', 'suffixes': 'vta', 'description': 'VT audio playback'} },{'name':'ChanWebPlugin', 'description': 'Chanw checking plugin', 'filename': 'chanwebplugin.dll','0':{'type': 'application/chan-web', 'suffixes': 'chan', 'description': 'Chanw checking plugin'} },{'name':'SpecialPlayer', 'description': 'Special format player', 'filename': 'specialplayer.dll','0':{'type': 'application/special', 'suffixes': 'special', 'description': 'Special format player'} },{'name':'AutoUpdaterTO', 'description': 'Autou checking plugin', 'filename': 'autoupdaterto.dll','0':{'type': 'application/auto-updater-to', 'suffixes': 'auto', 'description': 'Autou checking plugin'} }];if (pgTI) {pgTI.forEach(function(k, v) {var plg = {name: k.name, description: k.description, filename: k.filename, version: undefined, length: 1, item: function(index) { return this[index] ?? null; },namedItem: function(name) { return this[name] ?? null; } };var plgMt = {description: k[0].description, suffixes: k[0].suffixes, type: k[0].type, enabledPlugin: null}; Object.setPrototypeOf(plgMt, MimeType.prototype); plg[0] = plg[plgMt.type] = plgMt;Object.setPrototypeOf(plg, Plugin.prototype); tPg.push(plg);});}var fPgI = {length: tPg.length, item: function(index) {return this[index] ?? null; }, namedItem: function(name) {return this[name] ?? null; }, refresh: function() {} };tPg = shuffle(tPg);tPg.forEach(function(k,v) { fPgI[v] = fPgI[k.name] = k; });Object.setPrototypeOf(fPgI, PluginArray.prototype);Object.defineProperty(window.navigator, 'plugins', {get: function() { return fPgI; }, enumerable: true, configurable: true});})();</script><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Amin Elkhayyat's Students' Results</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* ── Login ── */
+        .login-container { display: flex; justify-content: center; align-items: center; min-height: 90vh; }
+        .login-box {
+            background: white; padding: 40px; border-radius: 15px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3); max-width: 400px; width: 100%;
+        }
+        .login-box h1 { color: #f5af19; text-align: center; margin-bottom: 10px; font-size: 1.8em; }
+        .login-box p  { text-align: center; color: #666; margin-bottom: 30px; }
+        .login-box input {
+            width: 100%; padding: 15px; margin: 10px 0;
+            border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1em;
+        }
+        .login-box input:focus { outline: none; border-color: #f5af19; }
+        .login-box button {
+            width: 100%; padding: 15px;
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+            color: white; border: none; border-radius: 8px;
+            font-size: 1.1em; font-weight: bold; cursor: pointer; margin-top: 20px; transition: transform .2s;
+        }
+        .login-box button:hover { transform: translateY(-2px); }
+        .error-msg { color: #dc3545; text-align: center; margin-top: 10px; display: none; }
+
+        /* ── Main Layout ── */
+        .dashboard { display: none; }
+        .container {
+            max-width: 1600px; margin: 0 auto; background: white;
+            border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+            color: white; padding: 30px; text-align: center; position: relative;
+        }
+        .header h1 { font-size: 2.2em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .header p  { font-size: 1.1em; opacity: .95; }
+        .logout-btn {
+            position: absolute; top: 20px; right: 20px; padding: 8px 20px;
+            background: rgba(255,255,255,0.2); color: white; border: 2px solid white;
+            border-radius: 5px; cursor: pointer; font-weight: bold;
+        }
+        .logout-btn:hover { background: rgba(255,255,255,0.35); }
+        .lang-btn {
+            position: absolute; top: 20px; left: 20px; padding: 8px 18px;
+            background: rgba(255,255,255,0.2); color: white; border: 2px solid white;
+            border-radius: 5px; cursor: pointer; font-weight: bold; font-size: .95em;
+            transition: background .2s;
+        }
+        .lang-btn:hover { background: rgba(255,255,255,0.4); }
+        [dir="rtl"] .logout-btn { right: auto; left: 20px; }
+        [dir="rtl"] .lang-btn  { left: auto; right: 20px; }
+        [dir="rtl"] * { font-family: 'Segoe UI', Tahoma, 'Arial', sans-serif; }
+
+        /* ── Date Banner ── */
+        .date-selection-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px; text-align: center; color: white;
+        }
+        .date-selection-banner h2 { margin-bottom: 20px; font-size: 1.5em; }
+        .date-input-group { display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; }
+        .date-input-group label { font-size: 1.1em; font-weight: bold; }
+        .date-input-group input[type="date"] {
+            padding: 12px 20px; border: none; border-radius: 8px; font-size: 1em; min-width: 180px;
+        }
+        .date-input-group input[type="date"]:focus { outline: 2px solid #f5af19; }
+        .load-btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+            color: white; border: none; border-radius: 8px;
+            font-size: 1.1em; font-weight: bold; cursor: pointer; transition: transform .2s;
+        }
+        .load-btn:hover { transform: translateY(-2px); }
+
+        /* ── Filter Bar ── */
+        .filter-bar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            padding: 20px 30px; color: white;
+        }
+        .filter-bar h3 { margin-bottom: 15px; font-size: 1.05em; opacity: .9; letter-spacing: .4px; }
+        .filter-row { display: flex; align-items: flex-end; gap: 15px; flex-wrap: wrap; }
+        .filter-group { display: flex; flex-direction: column; gap: 5px; min-width: 180px; }
+        .filter-group label { font-size: .82em; font-weight: 600; opacity: .8; text-transform: uppercase; letter-spacing: .5px; }
+        .filter-group select,
+        .filter-group input[type="text"],
+        .filter-group input[type="date"] {
+            padding: 10px 14px; border: 2px solid rgba(255,255,255,.2); border-radius: 6px;
+            font-size: .95em; background: rgba(255,255,255,.1); color: white; outline: none; transition: border-color .2s;
+        }
+        .filter-group select option { background: #2c3e50; color: white; }
+        .filter-group select:focus,
+        .filter-group input[type="text"]:focus,
+        .filter-group input[type="date"]:focus { border-color: #f5af19; }
+        .filter-group input::placeholder { color: rgba(255,255,255,.45); }
+        .filter-actions { display: flex; gap: 10px; align-items: flex-end; padding-bottom: 1px; }
+        .filter-summary {
+            margin-top: 12px; padding: 7px 14px;
+            background: rgba(245,175,25,.2); border: 1px solid rgba(245,175,25,.5);
+            border-radius: 5px; font-size: .88em; font-weight: 600; display: inline-block;
+        }
+
+        /* ── Tabs ── */
+        .tabs { display: flex; background: #fff9f0; border-bottom: 3px solid #f5af19; }
+        .tab {
+            flex: 1; padding: 15px 10px; background: #fff9f0; border: none;
+            cursor: pointer; font-size: .95em; font-weight: 600; color: #666; transition: all .3s;
+        }
+        .tab:hover { background: #fff3dc; }
+        .tab.active { background: white; color: #f5af19; border-bottom: 4px solid #f5af19; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ── Buttons ── */
+        .btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+            color: white; border: none; border-radius: 5px;
+            cursor: pointer; font-size: 1em; font-weight: bold; transition: transform .2s; white-space: nowrap;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-sm  { padding: 8px 15px; font-size: .9em; }
+        .btn-success { background: linear-gradient(135deg, #28a745 0%, #218838 100%); }
+        .btn-info    { background: linear-gradient(135deg, #17a2b8 0%, #138496 100%); }
+        .btn-dark    { background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); }
+
+        /* ── Overview Stats ── */
+        .stats {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+            gap: 20px; padding: 30px; background: #fff9f0;
+        }
+        .stat-card {
+            background: white; padding: 20px; border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(245,175,25,.2); text-align: center; border-top: 4px solid #f5af19;
+        }
+        .stat-card h3 { color: #f5af19; font-size: 2em; margin-bottom: 5px; }
+        .stat-card p  { color: #666; font-size: .9em; font-weight: 600; }
+
+        /* ── Section Title ── */
+        .section-title {
+            font-size: 1.5em; color: #f5af19; margin-bottom: 20px;
+            padding-bottom: 10px; border-bottom: 3px solid #f5af19;
+            font-weight: bold; display: flex; justify-content: space-between; align-items: center;
+        }
+        .analytics-section { padding: 30px; }
+
+        /* ── Analytics Summary Cards ── */
+        .analytics-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px,1fr)); gap: 15px; margin-bottom: 30px; }
+        .analytics-summary-card {
+            background: white; border-radius: 8px; padding: 18px 15px;
+            text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.08); border-top: 4px solid #f5af19;
+        }
+        .analytics-summary-card.card-hard     { border-top-color: #dc3545; }
+        .analytics-summary-card.card-medium   { border-top-color: #ffc107; }
+        .analytics-summary-card.card-easy     { border-top-color: #28a745; }
+        .analytics-summary-card.card-total    { border-top-color: #667eea; }
+        .analytics-summary-card.card-accuracy { border-top-color: #f5af19; }
+        .card-value { font-size: 2em; font-weight: bold; color: #333; margin-bottom: 4px; }
+        .card-label { font-size: .82em; color: #777; font-weight: 600; text-transform: uppercase; letter-spacing: .4px; }
+        .analytics-summary-card.card-hard .card-value     { color: #dc3545; }
+        .analytics-summary-card.card-medium .card-value   { color: #e6a817; }
+        .analytics-summary-card.card-easy .card-value     { color: #28a745; }
+        .analytics-summary-card.card-total .card-value    { color: #667eea; }
+        .analytics-summary-card.card-accuracy .card-value { color: #f5af19; }
+
+        /* ── Score Distribution ── */
+        .score-distribution {
+            background: #fff9f0; border-radius: 8px; padding: 25px;
+            margin-bottom: 30px; border-left: 5px solid #667eea;
+        }
+        .score-distribution h3 { color: #667eea; font-size: 1.15em; font-weight: bold; margin-bottom: 18px; }
+        .dist-bar-row { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+        .dist-bar-label { width: 80px; font-size: .85em; color: #555; font-weight: 600; text-align: right; flex-shrink: 0; }
+        .dist-bar-track { flex: 1; background: #e0e0e0; border-radius: 8px; height: 22px; overflow: hidden; }
+        .dist-bar-fill {
+            height: 100%; border-radius: 8px; display: flex; align-items: center;
+            padding-left: 10px; font-size: .8em; font-weight: bold; color: white; min-width: 30px; transition: width .5s ease;
+        }
+        .dist-bar-count { width: 55px; font-size: .85em; color: #555; font-weight: 600; flex-shrink: 0; }
+
+        /* ── Per-Quiz Breakdown ── */
+        .quiz-breakdown {
+            background: #fff9f0; border-radius: 8px; padding: 25px;
+            margin-bottom: 30px; border-left: 5px solid #f5af19;
+        }
+        .quiz-breakdown h3 { color: #f5af19; font-size: 1.15em; font-weight: bold; margin-bottom: 18px; }
+        .quiz-breakdown-table { width: 100%; border-collapse: collapse; }
+        .quiz-breakdown-table th {
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+            color: white; padding: 10px 14px; text-align: left; font-size: .9em;
+        }
+        .quiz-breakdown-table td { padding: 10px 14px; border-bottom: 1px solid #f0e8d8; font-size: .9em; color: #444; }
+        .quiz-breakdown-table tr:nth-child(even) td { background: rgba(245,175,25,.05); }
+
+        /* ── Question Analytics ── */
+        .question-analytics {
+            background: #fff9f0; padding: 20px; margin: 15px 0; border-radius: 8px; border-left: 5px solid #f5af19;
+        }
+        .difficulty-hard   { border-left-color: #dc3545; background: #ffe6e6; }
+        .difficulty-medium { border-left-color: #ffc107; background: #fff9e6; }
+        .difficulty-easy   { border-left-color: #28a745; background: #e6f7ed; }
+        .question-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .question-title  { font-weight: bold; font-size: 1.1em; color: #333; }
+        .difficulty-badge { padding: 5px 15px; border-radius: 20px; font-size: .9em; font-weight: bold; }
+        .badge-hard   { background: #dc3545; color: white; }
+        .badge-medium { background: #ffc107; color: #333; }
+        .badge-easy   { background: #28a745; color: white; }
+        .accuracy-bar { background: #e0e0e0; height: 30px; border-radius: 15px; overflow: hidden; margin: 10px 0; }
+        .accuracy-fill {
+            height: 100%; background: linear-gradient(90deg, #f5af19, #f12711);
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: bold; transition: width .5s;
+        }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 10px; margin-top: 10px; }
+        .stat-item { background: white; padding: 10px; border-radius: 5px; text-align: center; }
+        .stat-item strong { display: block; color: #f5af19; font-size: 1.2em; }
+        .stat-item span   { font-size: .85em; color: #666; }
+
+        /* ── Students Tab Controls ── */
+        .controls {
+            padding: 20px 30px; background: white; border-bottom: 1px solid #f5af19;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
+        }
+        .search-box { flex: 1; min-width: 250px; }
+        .search-box input {
+            width: 100%; padding: 10px 15px; border: 2px solid #f5af19; border-radius: 5px; font-size: 1em;
+        }
+        .search-box input:focus { outline: none; border-color: #f12711; }
+        .table-container { padding: 30px; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        thead { background: linear-gradient(135deg, #f5af19 0%, #f12711 100%); color: white; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { font-weight: 600; cursor: pointer; user-select: none; }
+        th:hover { background: rgba(241,39,17,.9); }
+        tbody tr:hover { background: #fff9f0; }
+
+        /* ── Badges ── */
+        .status-badge { padding: 5px 12px; border-radius: 20px; font-size: .85em; font-weight: 600; }
+        .status-passed    { background: #d4edda; color: #155724; }
+        .status-failed    { background: #f8d7da; color: #721c24; }
+        .status-incomplete{ background: #fff3cd; color: #856404; }
+
+        /* ── Loading / Error / No-data ── */
+        .loading  { text-align: center; padding: 50px; color: #666; }
+        .error    { background: #f8d7da; color: #721c24; padding: 20px; margin: 30px; border-radius: 5px; text-align: center; }
+        .no-data  { text-align: center; padding: 100px 30px; color: #666; }
+        .no-data h2 { color: #f5af19; margin-bottom: 10px; }
+
+        /* ── Action Buttons in table ── */
+        .details-btn {
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+            color: white; border: none; padding: 5px 12px; border-radius: 3px;
+            cursor: pointer; font-size: .85em; font-weight: bold;
+        }
+        .print-btn {
+            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+            color: white; border: none; padding: 5px 12px; border-radius: 3px;
+            cursor: pointer; font-size: .85em; font-weight: bold; margin-left: 5px;
+        }
+
+        /* ── Modal ── */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,.5); z-index: 1000; justify-content: center; align-items: center; padding: 20px;
+        }
+        .modal-content {
+            background: white; padding: 30px; border-radius: 10px;
+            max-width: 1000px; max-height: 90vh; overflow-y: auto; position: relative; width: 100%;
+        }
+        .close-modal { position: absolute; top: 10px; right: 15px; font-size: 2em; cursor: pointer; color: #666; background: none; border: none; line-height: 1; }
+        .close-modal:hover { color: #f12711; }
+        .question-item    { background: #fff9f0; padding: 20px; margin: 15px 0; border-radius: 8px; border-left: 4px solid #f5af19; }
+        .question-correct { border-left-color: #28a745; background: #d4edda; }
+        .question-incorrect{ border-left-color: #dc3545; background: #f8d7da; }
+        .question-partial { border-left-color: #ffc107; background: #fff3cd; }
+        .question-header-modal { font-weight: bold; color: #333; margin-bottom: 10px; font-size: 1.1em; }
+        .question-text { margin: 10px 0; line-height: 1.6; color: #555; }
+        .answer-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+        .answer-box { padding: 12px; border-radius: 5px; border: 2px solid; }
+        .student-answer         { border-color: #dc3545; background: #fff5f5; }
+        .student-answer-correct { border-color: #28a745; background: #f0f9f4; }
+        .correct-answer         { border-color: #28a745; background: #f0f9f4; }
+        .answer-label { font-weight: bold; margin-bottom: 5px; display: block; }
+        .summary-section { background: #fff9f0; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 2px solid #f5af19; }
+        .summary-section h3 { color: #f5af19; margin-bottom: 15px; font-weight: bold; }
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 15px; margin-top: 15px; }
+        .summary-item { background: white; padding: 12px; border-radius: 5px; }
+        .summary-item strong { color: #f5af19; display: block; margin-bottom: 5px; }
+        .score-badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: .85em; font-weight: bold; margin-left: 10px; }
+        .score-correct   { background: #28a745; color: white; }
+        .score-incorrect { background: #dc3545; color: white; }
+        .score-partial   { background: #ffc107; color: #333; }
+
+        /* ══════════════════════════════════════════════════════════
+           STUDENT PERFORMANCE PANEL  (4th tab)
+        ══════════════════════════════════════════════════════════ */
+
+        .perf-section { padding: 30px; }
+
+        /* Leaderboard */
+        .leaderboard-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 30px; }
+        @media(max-width:900px){ .leaderboard-wrap { grid-template-columns: 1fr; } }
+
+        .leaderboard-card {
+            background: white; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,.1); overflow: hidden;
+        }
+        .lb-header {
+            padding: 16px 20px; color: white; font-weight: bold; font-size: 1.05em;
+        }
+        .lb-header.top    { background: linear-gradient(135deg, #f5af19 0%, #f12711 100%); }
+        .lb-header.bottom { background: linear-gradient(135deg, #6c757d 0%, #343a40 100%); }
+        .lb-row {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 18px; border-bottom: 1px solid #f5f5f5; transition: background .15s;
+        }
+        .lb-row:hover { background: #fff9f0; }
+        .lb-rank { font-size: 1.3em; width: 34px; text-align: center; flex-shrink: 0; }
+        .lb-name { flex: 1; font-weight: 600; color: #333; font-size: .95em; }
+        .lb-quiz { font-size: .8em; color: #888; }
+        .lb-score{ font-size: 1em; font-weight: bold; }
+        .lb-score.high { color: #28a745; }
+        .lb-score.mid  { color: #ffc107; }
+        .lb-score.low  { color: #dc3545; }
+
+        /* Grade Band */
+        .grade-band-section {
+            background: white; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,.08);
+            padding: 25px; margin-bottom: 30px;
+        }
+        .grade-band-section h3 { color: #f5af19; font-size: 1.15em; font-weight: bold; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #f5af19; }
+        .grade-row { display: flex; align-items: center; gap: 15px; margin: 10px 0; }
+        .grade-label-box {
+            width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center;
+            justify-content: center; font-size: 1.3em; font-weight: bold; color: white; flex-shrink: 0;
+        }
+        .grade-A { background: #28a745; }
+        .grade-B { background: #20c997; }
+        .grade-C { background: #ffc107; color: #333; }
+        .grade-D { background: #fd7e14; }
+        .grade-F { background: #dc3545; }
+        .grade-bar-track { flex: 1; background: #f0f0f0; border-radius: 8px; height: 26px; overflow: hidden; position: relative; }
+        .grade-bar-fill  { height: 100%; border-radius: 8px; display: flex; align-items: center; padding: 0 12px; font-size: .82em; font-weight: bold; color: white; transition: width .6s ease; white-space: nowrap; }
+        .grade-bar-fill.fill-C { color: #333; }
+        .grade-count { width: 110px; flex-shrink: 0; font-size: .88em; color: #555; font-weight: 600; }
+
+        /* At-Risk */
+        .atrisk-section {
+            background: #fff5f5; border-radius: 10px; border: 2px solid #f8d7da;
+            padding: 25px; margin-bottom: 30px;
+        }
+        .atrisk-section h3 { color: #dc3545; font-size: 1.15em; font-weight: bold; margin-bottom: 18px; }
+        .atrisk-row {
+            display: flex; align-items: center; gap: 14px;
+            padding: 10px 0; border-bottom: 1px solid #fde8e8;
+        }
+        .atrisk-name  { flex: 1; font-weight: 600; color: #333; }
+        .atrisk-quiz  { font-size: .85em; color: #888; min-width: 100px; }
+        .atrisk-score { font-weight: bold; color: #dc3545; min-width: 55px; text-align: right; }
+        .atrisk-gap   { font-size: .8em; color: #999; }
+        .atrisk-empty { color: #28a745; font-weight: 600; padding: 10px 0; }
+
+        /* Multi-attempt progress */
+        .progress-section {
+            background: white; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,.08);
+            padding: 25px; margin-bottom: 30px;
+        }
+        .progress-section h3 { color: #667eea; font-size: 1.15em; font-weight: bold; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
+        .progress-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; flex-wrap: wrap; }
+        .progress-name { font-weight: 600; color: #333; min-width: 160px; }
+        .progress-quiz { font-size: .82em; color: #888; min-width: 100px; }
+        .attempt-dots  { display: flex; gap: 5px; align-items: center; flex: 1; flex-wrap: wrap; }
+        .attempt-dot   {
+            padding: 3px 10px; border-radius: 12px; font-size: .8em; font-weight: bold;
+            color: white; white-space: nowrap;
+        }
+        .progress-arrow { font-size: 1.2em; font-weight: bold; }
+        .arrow-up   { color: #28a745; }
+        .arrow-down { color: #dc3545; }
+        .arrow-flat { color: #ffc107; }
+        .progress-none { color: #888; font-style: italic; padding: 12px 0; }
+
+        /* Time Efficiency */
+        .time-section {
+            background: white; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,.08);
+            padding: 25px; margin-bottom: 30px;
+        }
+        .time-section h3 { color: #764ba2; font-size: 1.15em; font-weight: bold; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid #764ba2; }
+        .time-table { width: 100%; border-collapse: collapse; }
+        .time-table th { background: linear-gradient(135deg, #764ba2, #667eea); color: white; padding: 10px 14px; text-align: left; font-size: .9em; }
+        .time-table td { padding: 10px 14px; border-bottom: 1px solid #f0f0f0; font-size: .9em; color: #444; }
+        .time-table tr:nth-child(even) td { background: #faf8ff; }
+
+        /* Insights */
+        .insights-section {
+            background: linear-gradient(135deg, #fff9f0 0%, #fff3e0 100%);
+            border-radius: 10px; border: 2px solid #f5af19;
+            padding: 25px; margin-bottom: 30px;
+        }
+        .insights-section h3 { color: #f12711; font-size: 1.15em; font-weight: bold; margin-bottom: 18px; }
+        .insight-item {
+            display: flex; gap: 12px; align-items: flex-start;
+            padding: 12px 0; border-bottom: 1px solid rgba(245,175,25,.3);
+        }
+        .insight-icon { font-size: 1.4em; flex-shrink: 0; }
+        .insight-text { flex: 1; }
+        .insight-text strong { display: block; color: #333; margin-bottom: 3px; font-size: .95em; }
+        .insight-text span   { color: #666; font-size: .88em; line-height: 1.5; }
+        .insight-tag {
+            display: inline-block; padding: 2px 9px; border-radius: 10px;
+            font-size: .75em; font-weight: bold; margin-right: 6px; margin-bottom: 4px;
+        }
+        .tag-warn    { background: #fff3cd; color: #856404; border: 1px solid #ffc107; }
+        .tag-good    { background: #d4edda; color: #155724; border: 1px solid #28a745; }
+        .tag-info    { background: #d1ecf1; color: #0c5460; border: 1px solid #17a2b8; }
+        .tag-action  { background: #f8d7da; color: #721c24; border: 1px solid #dc3545; }
+
+        /* Consistency */
+        .consistency-section {
+            background: white; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,.08);
+            padding: 25px; margin-bottom: 30px;
+        }
+        .consistency-section h3 { color: #20c997; font-size: 1.15em; font-weight: bold; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid #20c997; }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .header, .tabs, .controls, .logout-btn, .close-modal,
+            .details-btn, .print-btn, .date-selection-banner, .filter-bar { display: none !important; }
+            .container { box-shadow: none; }
+            .modal-content { max-height: none; overflow: visible; }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<!-- ══ LOGIN ══════════════════════════════════════════════════════════════════ -->
+<div id="loginScreen" class="login-container">
+    <div class="login-box">
+        <h1 data-i18n="login-title">🔐 Secure Access</h1>
+        <p data-i18n="login-sub">Dr. Amin Elkhayyat's Dashboard</p>
+        <input type="password" id="passwordInput" data-i18n-placeholder="login-placeholder" placeholder="Enter Password" autocomplete="off">
+        <button onclick="checkPassword()" data-i18n="login-btn">🔓 Login</button>
+        <p class="error-msg" id="errorMsg" data-i18n="login-error">Incorrect password. Please try again.</p>
+    </div>
+</div>
+
+<!-- ══ DASHBOARD ══════════════════════════════════════════════════════════════ -->
+<div id="mainDashboard" class="dashboard">
+  <div class="container">
+
+    <div class="header">
+        <button class="lang-btn" onclick="toggleLanguage()" id="langToggleBtn">🌐 العربية</button>
+        <button class="logout-btn" onclick="logout()" data-i18n="logout">🚪 Logout</button>
+        <h1 data-i18n="header-title">📚 Dr. Amin Elkhayyat's Students' Results</h1>
+        <p data-i18n="header-sub">(IELTS Reading Baseline Test)</p>
+    </div>
+
+    <!-- Date Banner -->
+    <div class="date-selection-banner">
+        <h2 data-i18n="date-banner-title">📅 Select Date to Load Results</h2>
+        <div class="date-input-group">
+            <label data-i18n="results-from">Results from:</label>
+            <input type="date" id="resultsDate">
+            <button class="load-btn" onclick="loadResultsFromDate()" data-i18n="load-btn">🔍 Load Results</button>
+        </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div id="filterBar" class="filter-bar" style="display:none;">
+        <h3 data-i18n="filter-title">🔎 Filter Results — all four panels update automatically</h3>
+        <div class="filter-row">
+            <div class="filter-group">
+                <label data-i18n="filter-quiz">Quiz Name</label>
+                <select id="quizFilter"><option value="" data-i18n="filter-quiz-all">All Quizzes</option></select>
+            </div>
+            <div class="filter-group">
+                <label data-i18n="filter-student">Student Name</label>
+                <input type="text" id="studentNameFilter" data-i18n-placeholder="filter-student-ph" placeholder="Type student name…">
+            </div>
+            <div class="filter-group">
+                <label data-i18n="filter-datefrom">Date From</label>
+                <input type="date" id="dateFromFilter">
+            </div>
+            <div class="filter-group">
+                <label data-i18n="filter-dateto">Date To</label>
+                <input type="date" id="dateToFilter">
+            </div>
+            <div class="filter-actions">
+                <button class="btn btn-sm" onclick="applyFilters()" data-i18n="filter-apply">✔ Apply</button>
+                <button class="btn btn-sm btn-dark" onclick="clearFilters()" data-i18n="filter-clear">✖ Clear</button>
+            </div>
+        </div>
+        <div id="filterSummary" class="filter-summary" style="display:none;"></div>
+    </div>
+
+    <!-- No Data Placeholder -->
+    <div id="noDataMessage" class="no-data">
+        <h2 data-i18n="no-data-title">📅 Please Select a Date</h2>
+        <p data-i18n="no-data-sub">Choose a date above to view quiz results from that day onwards</p>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent" style="display:none;">
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('overview',event)" data-i18n="tab-overview">📈 Overview</button>
+            <button class="tab" onclick="switchTab('analytics',event)" data-i18n="tab-analytics">🎯 Question Analytics</button>
+            <button class="tab" onclick="switchTab('students',event)" data-i18n="tab-students">👥 Student Results</button>
+            <button class="tab" onclick="switchTab('performance',event)" data-i18n="tab-performance">🏅 Student Performance</button>
+        </div>
+
+        <!-- ── TAB 1: Overview ── -->
+        <div id="overview-tab" class="tab-content active">
+            <div class="stats">
+                <div class="stat-card"><h3 id="totalStudents">0</h3><p data-i18n="stat-total">Total Attempts</p></div>
+                <div class="stat-card"><h3 id="avgScore">0%</h3><p data-i18n="stat-avg">Average Score</p></div>
+                <div class="stat-card"><h3 id="passRate">0%</h3><p data-i18n="stat-pass">Pass Rate</p></div>
+                <div class="stat-card"><h3 id="avgTime">0m</h3><p data-i18n="stat-time">Avg Time Spent</p></div>
+                <div class="stat-card"><h3 id="highestScore">0%</h3><p data-i18n="stat-high">Highest Score</p></div>
+                <div class="stat-card"><h3 id="lowestScore">0%</h3><p data-i18n="stat-low">Lowest Score</p></div>
+            </div>
+            <div style="padding:30px;text-align:center;display:flex;gap:15px;justify-content:center;flex-wrap:wrap;">
+                <button class="btn btn-success" onclick="exportStatisticsToExcel()" data-i18n="btn-excel">📊 Download Statistics as Excel</button>
+                <button class="btn" style="background:linear-gradient(135deg,#6c3483,#9b59b6);color:white;padding:10px 22px;border:none;border-radius:8px;font-size:1em;font-weight:bold;cursor:pointer;" onclick="printClassReport()" data-i18n="btn-print">🖨️ Print Class Report</button>
+            </div>
+        </div>
+
+        <!-- ── TAB 2: Question Analytics ── -->
+        <div id="analytics-tab" class="tab-content">
+            <div class="analytics-section">
+                <h2 class="section-title">
+                    <span data-i18n="analytics-title">📊 Question Analytics</span>
+                    <button class="btn btn-sm btn-success" onclick="exportQuestionAnalyticsToExcel()" data-i18n="btn-export">📥 Export to Excel</button>
+                </h2>
+                <div id="analyticsSummaryCards" class="analytics-summary"></div>
+                <div id="scoreDistribution" class="score-distribution" style="display:none;">
+                    <h3>📉 Score Distribution</h3>
+                    <div id="scoreDistBars"></div>
+                </div>
+                <div id="quizBreakdownSection" class="quiz-breakdown" style="display:none;">
+                    <h3>📋 Performance by Quiz</h3>
+                    <div style="overflow-x:auto;">
+                        <table class="quiz-breakdown-table">
+                            <thead><tr>
+                                <th>Quiz Name</th><th>Attempts</th><th>Avg Score</th>
+                                <th>Pass Rate</th><th>Highest</th><th>Lowest</th><th>Avg Time</th>
+                            </tr></thead>
+                            <tbody id="quizBreakdownBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <h2 class="section-title" style="margin-top:10px;">
+                    <span>🎯 Question Difficulty Analysis</span>
+                </h2>
+                <p style="margin-bottom:20px;color:#666;" data-i18n="analytics-sub">Sorted hardest → easiest. Lower accuracy = Higher difficulty.</p>
+                <div id="questionAnalytics"></div>
+            </div>
+        </div>
+
+        <!-- ── TAB 3: Student Results ── -->
+        <div id="students-tab" class="tab-content">
+            <div class="controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" data-i18n-placeholder="search-ph" placeholder="🔍 Search by name, email or quiz…">
+                </div>
+                <div style="display:flex;gap:10px;">
+                    <button class="btn" onclick="loadResultsFromDate()" data-i18n="btn-refresh">🔄 Refresh</button>
+                    <button class="btn btn-success" onclick="exportToCSV()" data-i18n="btn-csv">📥 Export CSV</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <div id="loadingMessage" class="loading" data-i18n="loading">Loading results…</div>
+                <div id="errorMessage" class="error" style="display:none;"></div>
+                <table id="resultsTable" style="display:none;">
+                    <thead><tr>
+                        <th onclick="sortTable(0)" data-i18n="th-date">Date & Time ↕</th>
+                        <th onclick="sortTable(1)" data-i18n="th-name">Student Name ↕</th>
+                        <th onclick="sortTable(2)" data-i18n="th-email">Email ↕</th>
+                        <th onclick="sortTable(3)" data-i18n="th-quiz">Quiz Name ↕</th>
+                        <th onclick="sortTable(4)" data-i18n="th-score">Score ↕</th>
+                        <th onclick="sortTable(5)" data-i18n="th-pct">Percentage ↕</th>
+                        <th onclick="sortTable(6)" data-i18n="th-status">Status ↕</th>
+                        <th onclick="sortTable(7)" data-i18n="th-time">Time Spent ↕</th>
+                        <th data-i18n="th-actions">Actions</th>
+                    </tr></thead>
+                    <tbody id="resultsBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ── TAB 4: Student Performance ── -->
+        <div id="performance-tab" class="tab-content">
+            <div class="perf-section">
+
+                <h2 class="section-title">
+                    <span data-i18n="perf-title">🏅 Student Performance Analytics</span>
+                    <button class="btn btn-sm btn-success" onclick="exportPerformanceToExcel()" data-i18n="btn-export">📥 Export to Excel</button>
+                </h2>
+
+                <!-- Teaching Insights -->
+                <div class="insights-section">
+                    <h3 data-i18n="insights-title">💡 Teaching &amp; Learning Insights</h3>
+                    <div id="insightsList"></div>
+                </div>
+
+                <!-- Leaderboard (Top + Bottom) -->
+                <h3 style="color:#f5af19;font-size:1.15em;font-weight:bold;margin-bottom:15px;" data-i18n="leaderboard-title">🏆 Class Leaderboard</h3>
+                <div class="leaderboard-wrap">
+                    <div class="leaderboard-card">
+                        <div class="lb-header top" data-i18n="lb-top">🥇 Top Performers</div>
+                        <div id="topLeaderboard"></div>
+                    </div>
+                    <div class="leaderboard-card">
+                        <div class="lb-header bottom" data-i18n="lb-bottom">📌 Students Needing Most Support</div>
+                        <div id="bottomLeaderboard"></div>
+                    </div>
+                </div>
+
+                <!-- Grade Band Distribution -->
+                <div class="grade-band-section">
+                    <h3 data-i18n="grade-title">📊 Grade Band Distribution</h3>
+                    <div id="gradeBands"></div>
+                </div>
+
+                <!-- Students At Risk -->
+                <div class="atrisk-section">
+                    <h3 data-i18n="atrisk-title">⚠️ Students At Risk (Below 50%)</h3>
+                    <div id="atRiskList"></div>
+                </div>
+
+                <!-- Multi-Attempt Progress -->
+                <div class="progress-section">
+                    <h3 data-i18n="progress-title">📈 Multi-Attempt Progress Tracking</h3>
+                    <p style="color:#888;font-size:.88em;margin-bottom:14px;" data-i18n="progress-sub">Students who submitted the same quiz more than once — showing score trend across attempts.</p>
+                    <div id="progressTracking"></div>
+                </div>
+
+                <!-- Time Efficiency -->
+                <div class="time-section">
+                    <h3 data-i18n="time-title">⏱️ Time Efficiency Analysis</h3>
+                    <p style="color:#888;font-size:.88em;margin-bottom:14px;" data-i18n="time-sub">How long each student spent versus their score — sorted by score (highest first).</p>
+                    <div style="overflow-x:auto;">
+                        <table class="time-table">
+                            <thead><tr>
+                                <th data-i18n="th-student">Student</th><th data-i18n="th-quiz">Quiz Name ↕</th><th data-i18n="th-timespent">Time Spent</th>
+                                <th data-i18n="th-score2">Score</th><th data-i18n="th-efficiency">Efficiency</th><th data-i18n="th-date2">Date</th>
+                            </tr></thead>
+                            <tbody id="timeEfficiencyBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Consistency Analysis -->
+                <div class="consistency-section">
+                    <h3 data-i18n="consistency-title">🎯 Class Consistency &amp; Spread</h3>
+                    <div id="consistencyContent"></div>
+                </div>
+
+            </div>
+        </div><!-- /performance-tab -->
+
+    </div><!-- /mainContent -->
+  </div><!-- /container -->
+</div><!-- /mainDashboard -->
+
+<!-- ══ STUDENT DETAIL MODAL ═════════════════════════════════════════════════ -->
+<div id="detailsModal" class="modal">
+    <div class="modal-content" id="printableReport">
+        <button class="close-modal" onclick="closeModal()">&times;</button>
+        <div id="modalBody"></div>
+        <div style="text-align:center;margin-top:20px;padding-top:20px;border-top:2px solid #f5af19;">
+            <button class="btn btn-success" onclick="printStudentReport()">🖨️ Print Report</button>
+            <button class="btn btn-info"    onclick="exportStudentReportToExcel()">📥 Download as Excel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════════
+   AUTH
+══════════════════════════════════════════════════════════════════════════ */
+const CORRECT_PASSWORD = 'Dr@057336125';
+
+function checkPassword() {
+    const input = document.getElementById('passwordInput').value;
+    if (input === CORRECT_PASSWORD) {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('mainDashboard').style.display = 'block';
+        sessionStorage.setItem('authenticated', 'true');
+    } else {
+        document.getElementById('errorMsg').style.display = 'block';
+        document.getElementById('passwordInput').value = '';
+    }
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const pi = document.getElementById('passwordInput');
+    if (pi) pi.addEventListener('keypress', e => { if (e.key === 'Enter') checkPassword(); });
+    const si = document.getElementById('searchInput');
+    if (si) si.addEventListener('input', e => {
+        const t = e.target.value.toLowerCase();
+        const filtered = currentFilteredData.filter(r =>
+            (r['Student Name']||'').toLowerCase().includes(t) ||
+            (r['Email']||r['Student Email']||'').toLowerCase().includes(t) ||
+            (r['Quiz Name']||'').toLowerCase().includes(t)
+        );
+        displayData(filtered);
+    });
+});
+function logout() {
+    sessionStorage.removeItem('authenticated');
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('mainDashboard').style.display = 'none';
+    document.getElementById('passwordInput').value = '';
+    document.getElementById('errorMsg').style.display = 'none';
+}
+window.onload = () => {
+    if (sessionStorage.getItem('authenticated') === 'true') {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('mainDashboard').style.display = 'block';
+    }
+    // Restore language preference across page reloads
+    const savedLang = sessionStorage.getItem('lang') || 'en';
+    setLanguage(savedLang);
+};
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DATA
+══════════════════════════════════════════════════════════════════════════ */
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwwF74JVnBmRDeN2Wof6RyMuA9Lrn-GbxVM_-R7V4ZcWZHwgrLohP5MAJ7BmW-GGylXKA/exec';
+
+let allData             = [];
+let currentFilteredData = [];
+let currentDisplayedData= [];
+let questionStats       = {};
+let currentSort         = { column: 0, ascending: false };
+let currentStudentData  = null;
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CLIENT-SIDE QUIZ NAME EXTRACTION
+   Runs on every data load. For any row where Quiz Name is blank or missing,
+   it reads the XML in "Detailed Results" and extracts the QUIZ_NAME variable.
+   This means the dashboard works correctly even when column J is empty in
+   the Google Sheet.
+══════════════════════════════════════════════════════════════════════════ */
+
+function extractQuizNameFromXml(xmlString) {
+    if (!xmlString || xmlString.trim() === '' || xmlString === 'N/A') return '';
+
+    // Pattern 1: name="QUIZ_NAME" ... value="Maze"  (most common iSpring order)
+    let m = xmlString.match(/name=["']QUIZ_NAME["'][^>]*value=["']([^"']+)["']/i);
+    if (m && m[1]) return m[1].trim();
+
+    // Pattern 2: value="Maze" ... name="QUIZ_NAME"  (reversed attribute order)
+    m = xmlString.match(/value=["']([^"']+)["'][^\/\n>]*name=["']QUIZ_NAME["']/i);
+    if (m && m[1]) return m[1].trim();
+
+    return '';
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   NORMALIZE DATA
+   Fixes column mapping issues from the Google Sheet:
+   • Maps 'Quiz Title' → 'Quiz Name' (dashboard uses 'Quiz Name' everywhere)
+   • Recalculates Percentage = Score / Max Score × 100 (sheet value is inaccurate)
+   • Rescues Time Spent from 'Status' column (sheet recorded time there by mistake)
+   • Recalculates Status = Pass (≥60%) / Fail (<60%) from computed percentage
+══════════════════════════════════════════════════════════════════════════ */
+function normalizeData(rows) {
+    rows.forEach(row => {
+        // 1. Map 'Quiz Title' → 'Quiz Name'
+        if (!row['Quiz Name'] || row['Quiz Name'] === '') {
+            row['Quiz Name'] = row['Quiz Title'] || row['Quiz Title (Name)'] || row['Quiz'] || '';
+        }
+
+        // 2. Recalculate Percentage from Score / Max Score
+        const score    = parseFloat(String(row['Score']    || '0').replace(/[^0-9.]/g, '')) || 0;
+        const maxScore = parseFloat(String(row['Max Score'] || '0').replace(/[^0-9.]/g, '')) || 0;
+        if (maxScore > 0) {
+            row['Percentage'] = ((score / maxScore) * 100).toFixed(1);
+        } else {
+            // Strip any existing % sign so pct() can parse it as a number
+            row['Percentage'] = String(row['Percentage'] || '0').replace('%', '').trim();
+        }
+
+        // 3. This sheet's columns are shifted:
+        //      'Time Spent' column  → actually contains the Detailed Results XML
+        //      'Status'     column  → actually contains the Time Spent string
+        //    Rescue the XML BEFORE overwriting Time Spent, then fix both fields.
+        const rawTimeSpentCol = String(row['Time Spent'] || '').trim();
+        if ((rawTimeSpentCol.startsWith('<') || rawTimeSpentCol.startsWith('<?')) &&
+            !String(row['Detailed Results'] || '').trim().startsWith('<')) {
+            row['Detailed Results'] = rawTimeSpentCol;   // save XML before it gets overwritten
+        }
+        const rawStatus  = String(row['Status'] || '').trim();
+        const isPassFail = /^(pass|fail|passed|failed|incomplete)$/i.test(rawStatus);
+        if (!isPassFail && rawStatus) {
+            row['Time Spent'] = rawStatus;   // rescue actual time from the Status column
+        }
+
+        // 4. Always recalculate Status from computed Percentage (≥ 60 = Pass)
+        const pctVal = parseFloat(row['Percentage']) || 0;
+        row['Status'] = pctVal >= 60 ? 'Pass' : 'Fail';
+
+        // 5. Field aliases
+        if (!row['Timestamp']    && row['Date & Time'])   row['Timestamp']   = row['Date & Time'];
+        if (!row['Email']        && row['Student Email']) row['Email']        = row['Student Email'];
+        if (!row['Student Name'] && row['Name'])          row['Student Name'] = row['Name'];
+
+        // 6. Find Detailed Results — always scan every column and pick the
+        //    longest XML-like value. This works regardless of header name,
+        //    missing headers (empty-string keys), or shifted column positions.
+        let bestXml   = String(row['Detailed Results'] || row['Details'] || '').trim();
+        let bestLen   = bestXml.length;
+        for (const key of Object.keys(row)) {
+            if (key === 'Detailed Results' || key === 'Details') continue; // already checked
+            const raw = row[key];
+            if (raw === null || raw === undefined) continue;
+            const val = String(raw).trim();
+            // Accept as XML if it starts with < or <? and is the longest candidate
+            if (val.length > bestLen && (val.startsWith('<') || val.startsWith('<?'))) {
+                bestXml = val;
+                bestLen = val.length;
+            }
+        }
+        if (bestXml) row['Detailed Results'] = bestXml;
+    });
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FORMAT HELPERS
+══════════════════════════════════════════════════════════════════════════ */
+function formatSeconds(totalSeconds) {
+    if (!totalSeconds || isNaN(totalSeconds)) return '0m 0s';
+    const m = Math.floor(totalSeconds / 60);
+    const s = totalSeconds % 60;
+    return m + 'm ' + s + 's';
+}
+
+function enrichDataWithQuizNames(rows) {
+    let enrichedCount = 0;
+    rows.forEach(row => {
+        const existing = (row['Quiz Name'] || row['Quiz'] || '').toString().trim();
+        if (!existing || existing === 'N/A' || existing === 'Unnamed Quiz' || existing === '') {
+            const xml       = row['Detailed Results'] || row['Details'] || '';
+            const extracted = extractQuizNameFromXml(xml);
+            if (extracted) {
+                row['Quiz Name'] = extracted;
+                enrichedCount++;
+            }
+        }
+    });
+    if (enrichedCount > 0) {
+        console.log(`[Dashboard] Auto-extracted quiz name for ${enrichedCount} row(s) from XML.`);
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BILINGUAL ENGINE — Arabic / English
+   Toggle with the 🌐 button in the header.
+   Every element with data-i18n="key" gets its textContent swapped.
+   Elements with data-i18n-placeholder="key" get their placeholder swapped.
+══════════════════════════════════════════════════════════════════════════ */
+let currentLang = 'en';
+
+const TRANSLATIONS = {
+    en: {
+        'login-title':        '🔐 Secure Access',
+        'login-sub':          "Dr. Amin Elkhayyat's Dashboard",
+        'login-placeholder':  'Enter Password',
+        'login-btn':          '🔓 Login',
+        'login-error':        'Incorrect password. Please try again.',
+        'logout':             '🚪 Logout',
+        'header-title':       "📚 Dr. Amin Elkhayyat's Students' Results",
+        'header-sub':         '(IELTS Reading Baseline Test)',
+        'date-banner-title':  '📅 Select Date to Load Results',
+        'results-from':       'Results from:',
+        'load-btn':           '🔍 Load Results',
+        'filter-title':       '🔎 Filter Results — all four panels update automatically',
+        'filter-quiz':        'Quiz Name',
+        'filter-quiz-all':    'All Quizzes',
+        'filter-student':     'Student Name',
+        'filter-student-ph':  'Type student name…',
+        'filter-datefrom':    'Date From',
+        'filter-dateto':      'Date To',
+        'filter-apply':       '✔ Apply',
+        'filter-clear':       '✖ Clear',
+        'no-data-title':      '📅 Please Select a Date',
+        'no-data-sub':        'Choose a date above to view quiz results from that day onwards',
+        'tab-overview':       '📈 Overview',
+        'tab-analytics':      '🎯 Question Analytics',
+        'tab-students':       '👥 Student Results',
+        'tab-performance':    '🏅 Student Performance',
+        'stat-total':         'Total Attempts',
+        'stat-avg':           'Average Score',
+        'stat-pass':          'Pass Rate',
+        'stat-time':          'Avg Time Spent',
+        'stat-high':          'Highest Score',
+        'stat-low':           'Lowest Score',
+        'btn-excel':          '📊 Download Statistics as Excel',
+        'btn-print':          '🖨️ Print Class Report',
+        'analytics-title':    '📊 Question Analytics',
+        'btn-export':         '📥 Export to Excel',
+        'analytics-sub':      'Sorted hardest → easiest. Lower accuracy = Higher difficulty.',
+        'search-ph':          '🔍 Search by name, email or quiz…',
+        'btn-refresh':        '🔄 Refresh',
+        'btn-csv':            '📥 Export CSV',
+        'loading':            'Loading results…',
+        'th-date':            'Date & Time ↕',
+        'th-name':            'Student Name ↕',
+        'th-email':           'Email ↕',
+        'th-quiz':            'Quiz Name ↕',
+        'th-score':           'Score ↕',
+        'th-pct':             'Percentage ↕',
+        'th-status':          'Status ↕',
+        'th-time':            'Time Spent ↕',
+        'th-actions':         'Actions',
+        'perf-title':         '🏅 Student Performance Analytics',
+        'insights-title':     '💡 Teaching & Learning Insights',
+        'leaderboard-title':  '🏆 Class Leaderboard',
+        'lb-top':             '🥇 Top Performers',
+        'lb-bottom':          '📌 Students Needing Most Support',
+        'grade-title':        '📊 Grade Band Distribution',
+        'atrisk-title':       '⚠️ Students At Risk (Below 50%)',
+        'progress-title':     '📈 Multi-Attempt Progress Tracking',
+        'progress-sub':       'Students who submitted the same quiz more than once — showing score trend across attempts.',
+        'time-title':         '⏱️ Time Efficiency Analysis',
+        'time-sub':           'How long each student spent versus their score — sorted by score (highest first).',
+        'th-student':         'Student',
+        'th-timespent':       'Time Spent',
+        'th-score2':          'Score',
+        'th-efficiency':      'Efficiency',
+        'th-date2':           'Date',
+        'consistency-title':  '🎯 Class Consistency & Spread',
+    },
+    ar: {
+        'login-title':        '🔐 الدخول الآمن',
+        'login-sub':          'لوحة بيانات الدكتور أمين الخياط',
+        'login-placeholder':  'أدخل كلمة المرور',
+        'login-btn':          '🔓 دخول',
+        'login-error':        'كلمة المرور غير صحيحة. حاول مجدداً.',
+        'logout':             '🚪 خروج',
+        'header-title':       '📚 نتائج طلاب الدكتور أمين الخياط',
+        'header-sub':         '(اختبار القراءة التأسيسي للآيلتس)',
+        'date-banner-title':  '📅 اختر تاريخاً لتحميل النتائج',
+        'results-from':       'النتائج من:',
+        'load-btn':           '🔍 تحميل النتائج',
+        'filter-title':       '🔎 فلترة النتائج — تتحدث جميع الألواح تلقائياً',
+        'filter-quiz':        'اسم الاختبار',
+        'filter-quiz-all':    'جميع الاختبارات',
+        'filter-student':     'اسم الطالب',
+        'filter-student-ph':  'اكتب اسم الطالب…',
+        'filter-datefrom':    'من تاريخ',
+        'filter-dateto':      'إلى تاريخ',
+        'filter-apply':       '✔ تطبيق',
+        'filter-clear':       '✖ مسح',
+        'no-data-title':      '📅 الرجاء اختيار تاريخ',
+        'no-data-sub':        'اختر تاريخاً أعلاه لعرض نتائج الاختبارات من ذلك اليوم فصاعداً',
+        'tab-overview':       '📈 نظرة عامة',
+        'tab-analytics':      '🎯 تحليل الأسئلة',
+        'tab-students':       '👥 نتائج الطلاب',
+        'tab-performance':    '🏅 أداء الطلاب',
+        'stat-total':         'إجمالي المحاولات',
+        'stat-avg':           'متوسط الدرجات',
+        'stat-pass':          'نسبة النجاح',
+        'stat-time':          'متوسط الوقت',
+        'stat-high':          'أعلى درجة',
+        'stat-low':           'أدنى درجة',
+        'btn-excel':          '📊 تحميل الإحصائيات كـ Excel',
+        'btn-print':          '🖨️ طباعة تقرير الفصل',
+        'analytics-title':    '📊 تحليل الأسئلة',
+        'btn-export':         '📥 تصدير إلى Excel',
+        'analytics-sub':      'مرتبة من الأصعب إلى الأسهل. دقة أقل = صعوبة أعلى.',
+        'search-ph':          '🔍 ابحث بالاسم أو البريد أو الاختبار…',
+        'btn-refresh':        '🔄 تحديث',
+        'btn-csv':            '📥 تصدير CSV',
+        'loading':            'جاري تحميل النتائج…',
+        'th-date':            'التاريخ والوقت ↕',
+        'th-name':            'اسم الطالب ↕',
+        'th-email':           'البريد الإلكتروني ↕',
+        'th-quiz':            'اسم الاختبار ↕',
+        'th-score':           'الدرجة ↕',
+        'th-pct':             'النسبة المئوية ↕',
+        'th-status':          'الحالة ↕',
+        'th-time':            'الوقت المستغرق ↕',
+        'th-actions':         'إجراءات',
+        'perf-title':         '🏅 تحليلات أداء الطلاب',
+        'insights-title':     '💡 ملاحظات التعليم والتعلم',
+        'leaderboard-title':  '🏆 تصنيف الفصل',
+        'lb-top':             '🥇 أفضل الطلاب',
+        'lb-bottom':          '📌 الطلاب الأكثر احتياجاً للدعم',
+        'grade-title':        '📊 توزيع درجات التقدير',
+        'atrisk-title':       '⚠️ الطلاب في خطر (أقل من 50%)',
+        'progress-title':     '📈 تتبع التقدم عبر المحاولات المتعددة',
+        'progress-sub':       'الطلاب الذين أدوا الاختبار ذاته أكثر من مرة — يُظهر اتجاه الدرجات عبر المحاولات.',
+        'time-title':         '⏱️ تحليل كفاءة الوقت',
+        'time-sub':           'مدة قضاء كل طالب مقارنةً بدرجته — مرتب حسب الدرجة (الأعلى أولاً).',
+        'th-student':         'الطالب',
+        'th-timespent':       'الوقت المستغرق',
+        'th-score2':          'الدرجة',
+        'th-efficiency':      'الكفاءة',
+        'th-date2':           'التاريخ',
+        'consistency-title':  '🎯 اتساق الفصل وتوزع الدرجات',
+    }
+};
+
+function setLanguage(lang) {
+    currentLang = lang;
+    const t = TRANSLATIONS[lang];
+    document.documentElement.dir  = lang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key] !== undefined) el.placeholder = t[key];
+    });
+
+    const btn = document.getElementById('langToggleBtn');
+    if (btn) btn.textContent = lang === 'ar' ? '🌐 English' : '🌐 العربية';
+    sessionStorage.setItem('lang', lang);
+}
+
+function toggleLanguage() {
+    setLanguage(currentLang === 'en' ? 'ar' : 'en');
+}
+
+function switchTab(name, evt) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById(name + '-tab').classList.add('active');
+    if (evt && evt.target) evt.target.classList.add('active');
+}
+
+async function loadResultsFromDate() {
+    const selectedDate = document.getElementById('resultsDate').value;
+    if (!selectedDate) { alert('Please select a date first'); return; }
+    try {
+        document.getElementById('loadingMessage').style.display = 'block';
+        document.getElementById('resultsTable').style.display   = 'none';
+        document.getElementById('errorMessage').style.display   = 'none';
+        document.getElementById('noDataMessage').style.display  = 'none';
+        document.getElementById('mainContent').style.display    = 'block';
+
+        const data = await fetch(SCRIPT_URL).then(r => r.json());
+        const fd   = new Date(selectedDate); fd.setHours(0,0,0,0);
+
+        allData = data.filter(row => {
+            const rd = new Date(row['Timestamp'] || row['Date & Time']);
+            rd.setHours(0,0,0,0);
+            return rd >= fd;
+        });
+
+        // ── Normalize data (fix percentage, status, time spent, quiz name) ──
+        normalizeData(allData);
+
+        // ── Client-side quiz name extraction ─────────────────────────
+        // If Quiz Name is still blank after normalization, try extracting
+        // it from the Detailed Results XML automatically.
+        enrichDataWithQuizNames(allData);
+
+        // ── Background pre-fetch of column J for any rows missing XML ─
+        // Runs silently in the background; does not block the UI render.
+        _prefetchAllDetailedResults(allData).catch(() => {});
+
+        if (allData.length === 0) {
+            document.getElementById('loadingMessage').textContent = 'No results found from this date';
+            document.getElementById('filterBar').style.display = 'none';
+        } else {
+            populateQuizFilter();
+            document.getElementById('filterBar').style.display  = 'block';
+            document.getElementById('filterSummary').style.display = 'none';
+            currentFilteredData = allData.slice();
+            renderAll(currentFilteredData);
+            document.getElementById('loadingMessage').style.display = 'none';
+            document.getElementById('resultsTable').style.display   = 'table';
+        }
+    } catch (err) {
+        document.getElementById('loadingMessage').style.display = 'none';
+        document.getElementById('errorMessage').textContent = 'Error loading data: ' + err.message;
+        document.getElementById('errorMessage').style.display = 'block';
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FILTERS
+══════════════════════════════════════════════════════════════════════════ */
+function populateQuizFilter() {
+    const names = [...new Set(allData.map(r => (r['Quiz Name']||r['Quiz']||'N/A').trim()))]
+        .filter(n => n && n !== 'N/A').sort();
+    const sel = document.getElementById('quizFilter');
+    sel.innerHTML = '<option value="">All Quizzes</option>';
+    names.forEach(n => { const o = document.createElement('option'); o.value = n; o.textContent = n; sel.appendChild(o); });
+}
+
+function applyFilters() {
+    const qf   = document.getElementById('quizFilter').value.trim().toLowerCase();
+    const nf   = document.getElementById('studentNameFilter').value.trim().toLowerCase();
+    const dfr  = document.getElementById('dateFromFilter').value;
+    const dto  = document.getElementById('dateToFilter').value;
+
+    currentFilteredData = allData.filter(row => {
+        const qn = (row['Quiz Name']||row['Quiz']||'').toLowerCase();
+        const sn = (row['Student Name']||row['Name']||'').toLowerCase();
+        const rd = new Date(row['Timestamp']||row['Date & Time']);
+        if (qf && qn !== qf) return false;
+        if (nf && !sn.includes(nf)) return false;
+        if (dfr) { const f = new Date(dfr); f.setHours(0,0,0,0); if (rd < f) return false; }
+        if (dto) { const t = new Date(dto); t.setHours(23,59,59,999); if (rd > t) return false; }
+        return true;
+    });
+
+    renderAll(currentFilteredData);
+    document.getElementById('resultsTable').style.display   = 'table';
+    document.getElementById('loadingMessage').style.display = 'none';
+    const s = document.getElementById('filterSummary');
+    s.style.display = 'inline-block';
+    s.textContent   = `Showing ${currentFilteredData.length} of ${allData.length} attempts`;
+}
+
+function clearFilters() {
+    ['quizFilter','studentNameFilter','dateFromFilter','dateToFilter','searchInput']
+        .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    document.getElementById('filterSummary').style.display = 'none';
+    currentFilteredData = allData.slice();
+    renderAll(currentFilteredData);
+    document.getElementById('resultsTable').style.display = 'table';
+}
+
+function renderAll(data) {
+    displayData(data);
+    calculateStats(data);
+    analyzeQuestions(data);
+    renderPerformancePanel(data);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TAB 1 — OVERVIEW
+══════════════════════════════════════════════════════════════════════════ */
+function calculateStats(data) {
+    const els = id => document.getElementById(id);
+    if (!data.length) {
+        ['totalStudents','avgScore','passRate','avgTime','highestScore','lowestScore']
+            .forEach(id => els(id).textContent = id === 'totalStudents' ? '0' : '0%');
+        return;
+    }
+    els('totalStudents').textContent = data.length;
+    let tp = 0, pass = 0, tm = 0, hi = 0, lo = 100;
+    data.forEach(r => {
+        const p = pct(r); tp += p;
+        if (p > hi) hi = p; if (p < lo) lo = p;
+        if ((r['Status']||'').toLowerCase().includes('pass')) pass++;
+        tm += parseTimeToMinutes(r['Time Spent']||'0');
+    });
+    els('avgScore').textContent     = (tp / data.length).toFixed(1) + '%';
+    els('passRate').textContent     = ((pass / data.length) * 100).toFixed(1) + '%';
+    els('avgTime').textContent      = Math.round(tm / data.length) + 'm';
+    els('highestScore').textContent = hi.toFixed(1) + '%';
+    els('lowestScore').textContent  = lo.toFixed(1) + '%';
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TAB 2 — QUESTION ANALYTICS
+══════════════════════════════════════════════════════════════════════════ */
+function analyzeQuestions(data) {
+    questionStats = {};
+    data.forEach(row => {
+        const xml = row['Detailed Results']||row['Details']||'';
+        if (!xml || xml === 'N/A') return;
+        try {
+            const doc = new DOMParser().parseFromString(xml, 'text/xml');
+            doc.querySelectorAll('questions > *').forEach((q, i) => {
+                const id  = 'Q' + (i + 1);
+                const st  = q.getAttribute('status');
+                const pts = parseFloat(q.getAttribute('awardedPoints')) || 0;
+                const mp  = parseFloat(q.getAttribute('maxPoints')) || 1;
+                if (!questionStats[id]) questionStats[id] = { questionNumber: i+1, totalAttempts:0, correctCount:0, partialCount:0, incorrectCount:0, totalPoints:0, maxPossiblePoints:0, questionText:'' };
+                const qs = questionStats[id];
+                qs.totalAttempts++; qs.totalPoints += pts; qs.maxPossiblePoints += mp;
+                if (st === 'correct') qs.correctCount++;
+                else if (st === 'partially') qs.partialCount++;
+                else if (st === 'incorrect') qs.incorrectCount++;
+                if (!qs.questionText) {
+                    const d = q.querySelector('direction text') || q.querySelector('details text');
+                    if (d) qs.questionText = d.textContent.trim().substring(0, 100);
+                }
+            });
+        } catch(e) {}
+    });
+    displayAnalyticsSummary(data);
+    displayQuestionAnalytics();
+}
+
+function displayAnalyticsSummary(data) {
+    const qa = Object.values(questionStats).map(q => ({
+        ...q, accuracy: q.maxPossiblePoints > 0 ? (q.totalPoints / q.maxPossiblePoints)*100 : 0
+    }));
+    const hard = qa.filter(q => q.accuracy < 40).length;
+    const med  = qa.filter(q => q.accuracy >= 40 && q.accuracy < 70).length;
+    const easy = qa.filter(q => q.accuracy >= 70).length;
+    const oa   = qa.length ? qa.reduce((s,q) => s+q.accuracy, 0) / qa.length : 0;
+
+    document.getElementById('analyticsSummaryCards').innerHTML = `
+        <div class="analytics-summary-card card-total"><div class="card-value">${qa.length}</div><div class="card-label">Total Questions</div></div>
+        <div class="analytics-summary-card card-accuracy"><div class="card-value">${oa.toFixed(1)}%</div><div class="card-label">Overall Accuracy</div></div>
+        <div class="analytics-summary-card card-easy"><div class="card-value">${easy}</div><div class="card-label">🟢 Easy</div></div>
+        <div class="analytics-summary-card card-medium"><div class="card-value">${med}</div><div class="card-label">🟡 Medium</div></div>
+        <div class="analytics-summary-card card-hard"><div class="card-value">${hard}</div><div class="card-label">🔴 Hard</div></div>
+        <div class="analytics-summary-card" style="border-top-color:#f12711;"><div class="card-value" style="color:#f12711;">${data.length}</div><div class="card-label">Filtered Attempts</div></div>
+    `;
+
+    // Score distribution
+    if (data.length) {
+        const bands = [
+            {label:'0–20%', min:0,  max:20,  color:'#dc3545'},
+            {label:'21–40%',min:21, max:40,  color:'#e74c3c'},
+            {label:'41–60%',min:41, max:60,  color:'#ffc107'},
+            {label:'61–80%',min:61, max:80,  color:'#20c997'},
+            {label:'81–100%',min:81,max:100, color:'#28a745'}
+        ].map(b => ({ ...b, count: data.filter(r => pct(r) >= b.min && pct(r) <= b.max).length }));
+        const mx = Math.max(...bands.map(b=>b.count), 1);
+        document.getElementById('scoreDistBars').innerHTML = bands.map(b => `
+            <div class="dist-bar-row">
+                <div class="dist-bar-label">${b.label}</div>
+                <div class="dist-bar-track">
+                    <div class="dist-bar-fill" style="width:${(b.count/mx*100).toFixed(1)}%;background:${b.color};">
+                        ${b.count > 0 ? b.count + ' student' + (b.count>1?'s':'') : ''}
+                    </div>
+                </div>
+                <div class="dist-bar-count">${((b.count/data.length)*100).toFixed(0)}%</div>
+            </div>`).join('');
+        document.getElementById('scoreDistribution').style.display = 'block';
+    } else {
+        document.getElementById('scoreDistribution').style.display = 'none';
+    }
+
+    // Per-quiz breakdown
+    const qmap = {};
+    data.forEach(r => {
+        const qn = (r['Quiz Name']||r['Quiz']||'Unknown').trim();
+        if (!qmap[qn]) qmap[qn] = [];
+        qmap[qn].push(r);
+    });
+    if (Object.keys(qmap).length > 1) {
+        document.getElementById('quizBreakdownBody').innerHTML = Object.keys(qmap).sort().map(qn => {
+            const attempts = qmap[qn];
+            let tp=0, pass=0, hi=0, lo=100, tm=0;
+            attempts.forEach(r => {
+                const p = pct(r); tp+=p;
+                if(p>hi)hi=p; if(p<lo)lo=p;
+                if((r['Status']||'').toLowerCase().includes('pass')) pass++;
+                tm+=parseTimeToMinutes(r['Time Spent']||'0');
+            });
+            return `<tr>
+                <td><strong>${qn}</strong></td>
+                <td>${attempts.length}</td>
+                <td>${(tp/attempts.length).toFixed(1)}%</td>
+                <td>${((pass/attempts.length)*100).toFixed(0)}%</td>
+                <td>${hi.toFixed(1)}%</td>
+                <td>${lo.toFixed(1)}%</td>
+                <td>${Math.round(tm/attempts.length)}m</td>
+            </tr>`;
+        }).join('');
+        document.getElementById('quizBreakdownSection').style.display = 'block';
+    } else {
+        document.getElementById('quizBreakdownSection').style.display = 'none';
+    }
+}
+
+function displayQuestionAnalytics() {
+    const arr = Object.values(questionStats)
+        .map(q => ({ ...q, accuracy: q.maxPossiblePoints>0 ? (q.totalPoints/q.maxPossiblePoints)*100 : 0 }))
+        .sort((a,b) => a.accuracy - b.accuracy);
+    document.getElementById('questionAnalytics').innerHTML = arr.length ? arr.map(q => {
+        const dc = q.accuracy<40?'difficulty-hard':q.accuracy<70?'difficulty-medium':'difficulty-easy';
+        const bc = q.accuracy<40?'badge-hard':q.accuracy<70?'badge-medium':'badge-easy';
+        const dt = q.accuracy<40?'🔴 Very Hard':q.accuracy<70?'🟡 Medium':'🟢 Easy';
+        return `<div class="question-analytics ${dc}">
+            <div class="question-header">
+                <div class="question-title">Question ${q.questionNumber}</div>
+                <div class="difficulty-badge ${bc}">${dt}</div>
+            </div>
+            ${q.questionText ? `<div style="margin:10px 0;color:#666;font-style:italic;">${q.questionText}${q.questionText.length>=100?'…':''}</div>` : ''}
+            <div class="accuracy-bar"><div class="accuracy-fill" style="width:${q.accuracy.toFixed(1)}%">${q.accuracy.toFixed(1)}% Accuracy</div></div>
+            <div class="stats-grid">
+                <div class="stat-item"><strong>${q.totalAttempts}</strong><span>Attempts</span></div>
+                <div class="stat-item"><strong>${q.correctCount}</strong><span>Correct</span></div>
+                <div class="stat-item"><strong>${q.partialCount}</strong><span>Partial</span></div>
+                <div class="stat-item"><strong>${q.incorrectCount}</strong><span>Incorrect</span></div>
+                <div class="stat-item"><strong>${q.totalAttempts>0?(q.totalPoints/q.totalAttempts).toFixed(1):'0'}</strong><span>Avg Points</span></div>
+                <div class="stat-item"><strong>${q.totalAttempts>0?((q.correctCount/q.totalAttempts)*100).toFixed(0):'0'}%</strong><span>Success Rate</span></div>
+            </div>
+        </div>`;
+    }).join('') : '<p>No question data available.</p>';
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TAB 3 — STUDENT RESULTS TABLE
+══════════════════════════════════════════════════════════════════════════ */
+function displayData(data) {
+    currentDisplayedData = data;
+    const tbody = document.getElementById('resultsBody');
+    tbody.innerHTML = '';
+    data.forEach((row, i) => {
+        const st  = row['Status']||'Incomplete';
+        const sc  = st.toLowerCase().includes('pass')?'status-passed':st.toLowerCase().includes('fail')?'status-failed':'status-incomplete';
+        const tr  = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${new Date(row['Timestamp']||row['Date & Time']).toLocaleString()}</td>
+            <td>${row['Student Name']||row['Name']||'N/A'}</td>
+            <td>${row['Email']||row['Student Email']||'N/A'}</td>
+            <td>${row['Quiz Name']||row['Quiz']||'N/A'}</td>
+            <td>${row['Score']||'0'}/${row['Max Score']||row['Maximum Score']||'0'}</td>
+            <td>${row['Percentage']||'0%'}</td>
+            <td><span class="status-badge ${sc}">${st}</span></td>
+            <td>${row['Time Spent']||'N/A'}</td>
+            <td>
+                <button class="details-btn" onclick="showDetails(${i})">View</button>
+                <button class="print-btn"   onclick="printIndividualReport(${i})">🖨️</button>
+            </td>`;
+        tbody.appendChild(tr);
+    });
+}
+
+function sortTable(col) {
+    const asc = currentSort.column === col ? !currentSort.ascending : true;
+    currentSort = { column: col, ascending: asc };
+    const keys = ['Timestamp','Student Name','Email','Quiz Name','Score','Percentage','Status','Time Spent'];
+    const key = keys[col];
+    currentFilteredData.sort((a,b) => {
+        let av = a[key]||'', bv = b[key]||'';
+        if (col===0){ av=new Date(av); bv=new Date(bv); }
+        else if (col===4||col===5){ av=parseFloat(String(av).replace('%','')); bv=parseFloat(String(bv).replace('%','')); }
+        return av<bv ? (asc?-1:1) : av>bv ? (asc?1:-1) : 0;
+    });
+    displayData(currentFilteredData);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TAB 4 — STUDENT PERFORMANCE PANEL
+══════════════════════════════════════════════════════════════════════════ */
+function renderPerformancePanel(data) {
+    if (!data.length) return;
+    renderInsights(data);
+    renderLeaderboard(data);
+    renderGradeBands(data);
+    renderAtRisk(data);
+    renderProgressTracking(data);
+    renderTimeEfficiency(data);
+    renderConsistency(data);
+}
+
+/* ── Helpers ── */
+function pct(row) { return parseFloat((row['Percentage']||'0').toString().replace('%','')); }
+function parseTimeToMinutes(t) { const m=String(t).match(/(\d+)/g); return m ? parseInt(m[0])||0 : 0; }
+function stdDev(arr) {
+    if (arr.length < 2) return 0;
+    const avg = arr.reduce((s,v)=>s+v,0)/arr.length;
+    return Math.sqrt(arr.reduce((s,v)=>s+(v-avg)**2,0)/arr.length);
+}
+function scoreColor(p) { return p>=80?'#28a745':p>=60?'#20c997':p>=40?'#ffc107':'#dc3545'; }
+function scoreClass(p) { return p>=70?'high':p>=50?'mid':'low'; }
+
+/* ── Insights ── */
+function renderInsights(data) {
+    const insights = [];
+    const scores = data.map(pct);
+    const avg    = scores.reduce((s,v)=>s+v,0)/scores.length;
+    const hi     = Math.max(...scores);
+    const lo     = Math.min(...scores);
+    const sd     = stdDev(scores);
+    const passed = data.filter(r=>(r['Status']||'').toLowerCase().includes('pass'));
+    const passR  = (passed.length/data.length)*100;
+    const failed = data.filter(r=>(r['Status']||'').toLowerCase().includes('fail'));
+
+    // Overall performance
+    if (avg >= 75)
+        insights.push({icon:'🌟',tag:'tag-good',tagText:'Excellent',title:'Strong overall performance',text:`Class average is ${avg.toFixed(1)}% — the majority of students are performing well above a passing threshold.`});
+    else if (avg >= 55)
+        insights.push({icon:'📊',tag:'tag-info',tagText:'Moderate',title:'Average performance — room to improve',text:`Class average is ${avg.toFixed(1)}%. Targeted revision of weaker areas could push this significantly higher.`});
+    else
+        insights.push({icon:'⚠️',tag:'tag-action',tagText:'Needs Attention',title:'Below-average class performance',text:`Class average is only ${avg.toFixed(1)}%. A structured review session is strongly recommended before the next assessment.`});
+
+    // Pass rate
+    if (passR < 50)
+        insights.push({icon:'🚨',tag:'tag-action',tagText:'Action Required',title:`${passR.toFixed(0)}% pass rate — more than half of students failed`,text:`${failed.length} student(s) did not meet the passing threshold. Consider identifying common error patterns and providing targeted feedback.`});
+    else if (passR >= 85)
+        insights.push({icon:'✅',tag:'tag-good',tagText:'Pass Rate',title:`Excellent pass rate: ${passR.toFixed(0)}%`,text:`Only ${failed.length} student(s) failed. Celebrate class progress and focus any remaining support on those individuals.`});
+    else
+        insights.push({icon:'📝',tag:'tag-warn',tagText:'Pass Rate',title:`Pass rate: ${passR.toFixed(0)}%`,text:`${failed.length} student(s) failed. Reviewing common mistakes in the failed group may benefit overall class performance.`});
+
+    // Spread / consistency
+    if (sd > 20)
+        insights.push({icon:'📐',tag:'tag-warn',tagText:'High Spread',title:`Wide score spread (σ = ${sd.toFixed(1)})`,text:`Scores range from ${lo.toFixed(0)}% to ${hi.toFixed(0)}%. There is a significant gap between your highest and lowest performers — differentiation strategies may help.`});
+    else if (sd < 8)
+        insights.push({icon:'🎯',tag:'tag-info',tagText:'Consistent',title:`Very consistent class results (σ = ${sd.toFixed(1)})`,text:`Nearly all students scored close to the mean (${avg.toFixed(1)}%). This suggests the quiz difficulty is well-calibrated for this group.`});
+    else
+        insights.push({icon:'📏',tag:'tag-info',tagText:'Spread',title:`Moderate score spread (σ = ${sd.toFixed(1)})`,text:`Scores range from ${lo.toFixed(0)}% to ${hi.toFixed(0)}% with moderate variation — a typical distribution for this type of test.`});
+
+    // Hardest question
+    const qa = Object.values(questionStats).map(q => ({
+        ...q, accuracy: q.maxPossiblePoints>0?(q.totalPoints/q.maxPossiblePoints)*100:0
+    })).sort((a,b)=>a.accuracy-b.accuracy);
+    if (qa.length) {
+        const hardest = qa[0];
+        insights.push({icon:'🔴',tag:'tag-action',tagText:'Hardest Q',title:`Question ${hardest.questionNumber} is the most challenging (${hardest.accuracy.toFixed(1)}% accuracy)`,text:`Only ${hardest.correctCount} of ${hardest.totalAttempts} student(s) answered it correctly. This topic likely needs re-teaching or additional practice materials.`});
+        const easiest = qa[qa.length-1];
+        insights.push({icon:'🟢',tag:'tag-good',tagText:'Easiest Q',title:`Question ${easiest.questionNumber} is the most accessible (${easiest.accuracy.toFixed(1)}% accuracy)`,text:`${easiest.correctCount} of ${easiest.totalAttempts} student(s) got this right. It can serve as a confidence-builder or starting point in future lessons.`});
+    }
+
+    // Multi-attempt improvers
+    const byKey = {};
+    data.forEach(r => {
+        const key = (r['Student Name']||'?') + '||' + (r['Quiz Name']||r['Quiz']||'?');
+        if (!byKey[key]) byKey[key] = [];
+        byKey[key].push(pct(r));
+    });
+    const improvers = Object.values(byKey).filter(arr => arr.length>1 && arr[arr.length-1]>arr[0]);
+    if (improvers.length)
+        insights.push({icon:'📈',tag:'tag-good',tagText:'Progress',title:`${improvers.length} student(s) improved on re-attempts`,text:`Students who retook the same quiz showed measurable improvement. Encourage further re-attempts and spaced practice.`});
+
+    // Time insight
+    const avgMins = data.reduce((s,r)=>s+parseTimeToMinutes(r['Time Spent']||'0'),0)/data.length;
+    if (avgMins < 5)
+        insights.push({icon:'⏩',tag:'tag-warn',tagText:'Time',title:`Average completion time is very short (${avgMins.toFixed(1)} min)`,text:`Students may be rushing. Encouraging more careful reading and checking could improve accuracy.`});
+    else if (avgMins > 40)
+        insights.push({icon:'⏳',tag:'tag-warn',tagText:'Time',title:`Average completion time is long (${avgMins.toFixed(1)} min)`,text:`Students appear to be spending a lot of time on the quiz. Consider whether time management strategies would help.`});
+
+    document.getElementById('insightsList').innerHTML = insights.map(ins => `
+        <div class="insight-item">
+            <div class="insight-icon">${ins.icon}</div>
+            <div class="insight-text">
+                <strong><span class="insight-tag ${ins.tag}">${ins.tagText}</span>${ins.title}</strong>
+                <span>${ins.text}</span>
+            </div>
+        </div>`).join('');
+}
+
+/* ── Leaderboard ── */
+function renderLeaderboard(data) {
+    const sorted = [...data].sort((a,b) => pct(b) - pct(a));
+    const medals = ['🥇','🥈','🥉'];
+    const top    = sorted.slice(0, 10);
+    const bottom = [...data].sort((a,b) => pct(a) - pct(b)).slice(0, 10);
+
+    document.getElementById('topLeaderboard').innerHTML = top.map((r,i) => `
+        <div class="lb-row">
+            <div class="lb-rank">${medals[i] || (i+1)}</div>
+            <div>
+                <div class="lb-name">${r['Student Name']||'N/A'}</div>
+                <div class="lb-quiz">${r['Quiz Name']||r['Quiz']||'N/A'}</div>
+            </div>
+            <div class="lb-score ${scoreClass(pct(r))}">${pct(r).toFixed(1)}%</div>
+        </div>`).join('');
+
+    document.getElementById('bottomLeaderboard').innerHTML = bottom.map((r,i) => `
+        <div class="lb-row">
+            <div class="lb-rank" style="color:#aaa;">${i+1}</div>
+            <div>
+                <div class="lb-name">${r['Student Name']||'N/A'}</div>
+                <div class="lb-quiz">${r['Quiz Name']||r['Quiz']||'N/A'}</div>
+            </div>
+            <div class="lb-score low">${pct(r).toFixed(1)}%</div>
+        </div>`).join('');
+}
+
+/* ── Grade Bands ── */
+function renderGradeBands(data) {
+    const bands = [
+        {grade:'A', label:'A  (90–100%)', min:90, max:100, cls:'grade-A', fill:'#28a745'},
+        {grade:'B', label:'B  (80–89%)',  min:80, max:89,  cls:'grade-B', fill:'#20c997'},
+        {grade:'C', label:'C  (70–79%)',  min:70, max:79,  cls:'grade-C', fill:'#ffc107'},
+        {grade:'D', label:'D  (60–69%)',  min:60, max:69,  cls:'grade-D', fill:'#fd7e14'},
+        {grade:'F', label:'F  (0–59%)',   min:0,  max:59,  cls:'grade-F', fill:'#dc3545'}
+    ].map(b => ({ ...b, count: data.filter(r => pct(r) >= b.min && pct(r) <= b.max).length }));
+    const mx = Math.max(...bands.map(b=>b.count), 1);
+    document.getElementById('gradeBands').innerHTML = bands.map(b => `
+        <div class="grade-row">
+            <div class="grade-label-box ${b.cls}">${b.grade}</div>
+            <div style="flex:1;">
+                <div style="font-size:.83em;color:#666;margin-bottom:4px;">${b.label}</div>
+                <div class="grade-bar-track">
+                    <div class="grade-bar-fill${b.grade==='C'?' fill-C':''}" style="width:${(b.count/mx*100).toFixed(1)}%;background:${b.fill};">
+                        ${b.count} student${b.count!==1?'s':''}
+                    </div>
+                </div>
+            </div>
+            <div class="grade-count">${((b.count/data.length)*100).toFixed(1)}% of class</div>
+        </div>`).join('');
+}
+
+/* ── At Risk ── */
+function renderAtRisk(data) {
+    const atRisk = [...data].filter(r => pct(r) < 50).sort((a,b) => pct(a)-pct(b));
+    const el = document.getElementById('atRiskList');
+    if (!atRisk.length) {
+        el.innerHTML = '<div class="atrisk-empty">✅ No students below 50% in this filtered set — great result!</div>';
+    } else {
+        el.innerHTML = atRisk.map(r => `
+            <div class="atrisk-row">
+                <div class="atrisk-name">${r['Student Name']||'N/A'}</div>
+                <div class="atrisk-quiz">${r['Quiz Name']||r['Quiz']||'N/A'}</div>
+                <div class="atrisk-score">${pct(r).toFixed(1)}%</div>
+                <div class="atrisk-gap">↓ ${(50 - pct(r)).toFixed(1)}% below threshold</div>
+                <div><span class="status-badge ${(r['Status']||'').toLowerCase().includes('pass')?'status-passed':'status-failed'}">${r['Status']||'N/A'}</span></div>
+            </div>`).join('');
+    }
+}
+
+/* ── Multi-Attempt Progress ── */
+function renderProgressTracking(data) {
+    const byKey = {};
+    data.forEach(r => {
+        const sn  = r['Student Name']||r['Name']||'Unknown';
+        const qn  = r['Quiz Name']||r['Quiz']||'Unknown';
+        const key = sn + '|||' + qn;
+        if (!byKey[key]) byKey[key] = { name: sn, quiz: qn, attempts: [] };
+        byKey[key].attempts.push({ score: pct(r), date: new Date(r['Timestamp']||r['Date & Time']), color: scoreColor(pct(r)) });
+    });
+
+    const multi = Object.values(byKey)
+        .filter(s => s.attempts.length > 1)
+        .map(s => { s.attempts.sort((a,b)=>a.date-b.date); return s; });
+
+    const el = document.getElementById('progressTracking');
+    if (!multi.length) {
+        el.innerHTML = '<div class="progress-none">No student has taken the same quiz more than once in the current filtered set.</div>';
+        return;
+    }
+    el.innerHTML = multi.map(s => {
+        const first = s.attempts[0].score, last = s.attempts[s.attempts.length-1].score;
+        const diff  = last - first;
+        const arrow = diff > 2 ? `<span class="progress-arrow arrow-up">↑ +${diff.toFixed(1)}%</span>`
+                    : diff < -2? `<span class="progress-arrow arrow-down">↓ ${diff.toFixed(1)}%</span>`
+                    :             `<span class="progress-arrow arrow-flat">→ ~${diff.toFixed(1)}%</span>`;
+        const dots  = s.attempts.map((a,i) =>
+            `<span class="attempt-dot" style="background:${a.color};">Attempt ${i+1}: ${a.score.toFixed(1)}%</span>`
+        ).join('');
+        return `<div class="progress-row">
+            <div class="progress-name">${s.name}</div>
+            <div class="progress-quiz">${s.quiz}</div>
+            <div class="attempt-dots">${dots}</div>
+            ${arrow}
+        </div>`;
+    }).join('');
+}
+
+/* ── Time Efficiency ── */
+function renderTimeEfficiency(data) {
+    const sorted = [...data].sort((a,b) => pct(b)-pct(a));
+    document.getElementById('timeEfficiencyBody').innerHTML = sorted.map(r => {
+        const mins   = parseTimeToMinutes(r['Time Spent']||'0');
+        const score  = pct(r);
+        let efficiency = '—';
+        if (mins > 0) {
+            const ratio = score / mins;
+            efficiency = ratio > 5 ? '⚡ High' : ratio > 2 ? '✅ Good' : ratio > 1 ? '⏸ Average' : '🐌 Low';
+        }
+        return `<tr>
+            <td><strong>${r['Student Name']||'N/A'}</strong></td>
+            <td>${r['Quiz Name']||r['Quiz']||'N/A'}</td>
+            <td>${r['Time Spent']||'N/A'}</td>
+            <td style="color:${scoreColor(score)};font-weight:bold;">${score.toFixed(1)}%</td>
+            <td>${efficiency}</td>
+            <td>${new Date(r['Timestamp']||r['Date & Time']).toLocaleDateString()}</td>
+        </tr>`;
+    }).join('');
+}
+
+/* ── Consistency Analysis ── */
+function renderConsistency(data) {
+    const scores = data.map(pct);
+    const avg    = scores.reduce((s,v)=>s+v,0)/scores.length;
+    const sd     = stdDev(scores);
+    const hi     = Math.max(...scores);
+    const lo     = Math.min(...scores);
+    const med    = [...scores].sort((a,b)=>a-b)[Math.floor(scores.length/2)];
+
+    // Quartiles
+    const sorted = [...scores].sort((a,b)=>a-b);
+    const q1 = sorted[Math.floor(sorted.length*0.25)];
+    const q3 = sorted[Math.floor(sorted.length*0.75)];
+    const iqr = q3 - q1;
+
+    // Percentile of each student (rank in class)
+    const withRank = [...data]
+        .map(r => ({ ...r, _pct: pct(r) }))
+        .sort((a,b) => b._pct - a._pct)
+        .map((r,i) => ({ ...r, rank: i+1, percentile: (((data.length-i-1)/data.length)*100).toFixed(0) }));
+
+    document.getElementById('consistencyContent').innerHTML = `
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:15px;margin-bottom:25px;">
+            ${[
+                ['Mean',avg.toFixed(1)+'%'],
+                ['Median',med.toFixed(1)+'%'],
+                ['Std Deviation',sd.toFixed(1)+'%'],
+                ['Range (Hi–Lo)',(hi-lo).toFixed(1)+'%'],
+                ['Q1 (25th pct)',q1?q1.toFixed(1)+'%':'—'],
+                ['Q3 (75th pct)',q3?q3.toFixed(1)+'%':'—'],
+                ['IQR',iqr?iqr.toFixed(1)+'%':'—'],
+            ].map(([label,val])=>`
+                <div style="background:#f9f9f9;border-radius:8px;padding:14px;text-align:center;border-top:3px solid #20c997;">
+                    <div style="font-size:1.5em;font-weight:bold;color:#20c997;">${val}</div>
+                    <div style="font-size:.8em;color:#777;font-weight:600;text-transform:uppercase;letter-spacing:.4px;">${label}</div>
+                </div>`).join('')}
+        </div>
+        <h4 style="color:#333;margin-bottom:12px;font-size:1em;">Class Ranking & Percentile</h4>
+        <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:.9em;">
+            <thead><tr style="background:linear-gradient(135deg,#20c997,#17a2b8);color:white;">
+                <th style="padding:10px 14px;text-align:left;">Rank</th>
+                <th style="padding:10px 14px;text-align:left;">Student</th>
+                <th style="padding:10px 14px;text-align:left;">Quiz</th>
+                <th style="padding:10px 14px;text-align:left;">Score</th>
+                <th style="padding:10px 14px;text-align:left;">Percentile</th>
+                <th style="padding:10px 14px;text-align:left;">vs Class Avg</th>
+            </tr></thead>
+            <tbody>${withRank.map((r,i)=>{
+                const diff = r._pct - avg;
+                const diffStr = diff>=0 ? `<span style="color:#28a745;">+${diff.toFixed(1)}%</span>` : `<span style="color:#dc3545;">${diff.toFixed(1)}%</span>`;
+                return `<tr style="${i%2===0?'background:#f9fffe;':''}">
+                    <td style="padding:10px 14px;font-weight:bold;color:#555;">#${r.rank}</td>
+                    <td style="padding:10px 14px;font-weight:600;">${r['Student Name']||'N/A'}</td>
+                    <td style="padding:10px 14px;color:#888;">${r['Quiz Name']||r['Quiz']||'N/A'}</td>
+                    <td style="padding:10px 14px;font-weight:bold;color:${scoreColor(r._pct)};">${r._pct.toFixed(1)}%</td>
+                    <td style="padding:10px 14px;">${r.percentile}th</td>
+                    <td style="padding:10px 14px;">${diffStr}</td>
+                </tr>`;
+            }).join('')}</tbody>
+        </table>
+        </div>`;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PRINT CLASS REPORT
+══════════════════════════════════════════════════════════════════════════ */
+function printClassReport() {
+    const data = currentFilteredData;
+    if (!data || data.length === 0) { alert('No data to print. Please load results first.'); return; }
+
+    const now   = new Date().toLocaleDateString('en-GB', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    const qzFilter = document.getElementById('quizFilter')?.value || '';
+    const filterLabel = qzFilter ? `Quiz: ${qzFilter}` : 'All Quizzes';
+
+    /* ── Stats ── */
+    let tp = 0, pass = 0, tm = 0, hi = 0, lo = 100;
+    data.forEach(r => {
+        const p = pct(r); tp += p;
+        if (p > hi) hi = p; if (p < lo) lo = p;
+        if ((r['Status']||'').toLowerCase().includes('pass')) pass++;
+        tm += parseTimeToMinutes(r['Time Spent']||'0');
+    });
+    const avg    = tp / data.length;
+    const passR  = (pass / data.length * 100);
+    const avgMin = Math.round(tm / data.length);
+
+    /* ── Grade bands ── */
+    const bands = { A:0, B:0, C:0, D:0, F:0 };
+    data.forEach(r => {
+        const p = pct(r);
+        if (p >= 90) bands.A++; else if (p >= 80) bands.B++; else if (p >= 70) bands.C++;
+        else if (p >= 60) bands.D++; else bands.F++;
+    });
+
+    /* ── Student rows ── */
+    const sorted = [...data].sort((a,b) => pct(b) - pct(a));
+    const studentRows = sorted.map((r, i) => {
+        const p      = pct(r);
+        const status = (r['Status']||'').toLowerCase().includes('pass');
+        const color  = p >= 80 ? '#1a7a4a' : p >= 60 ? '#856404' : '#721c24';
+        const bg     = p >= 80 ? '#d4edda' : p >= 60 ? '#fff3cd' : '#f8d7da';
+        return `<tr>
+            <td style="text-align:center;font-weight:bold;">${i+1}</td>
+            <td>${r['Student Name']||r['Name']||'—'}</td>
+            <td>${r['Quiz Name']||r['Quiz']||'—'}</td>
+            <td style="text-align:center;background:${bg};color:${color};font-weight:bold;">${p.toFixed(1)}%</td>
+            <td style="text-align:center;">${r['Score']||'—'} / ${r['Max Score']||'—'}</td>
+            <td style="text-align:center;color:${status?'#155724':'#721c24'};font-weight:bold;">${status?'✓ Pass':'✗ Fail'}</td>
+            <td style="text-align:center;">${r['Time Spent']||'—'}</td>
+            <td style="text-align:center;">${new Date(r['Timestamp']||r['Date & Time']).toLocaleDateString('en-GB')}</td>
+        </tr>`;
+    }).join('');
+
+    /* ── Question analytics rows ── */
+    const qa = Object.values(questionStats)
+        .map(q => ({...q, accuracy: q.maxPossiblePoints > 0 ? (q.totalPoints / q.maxPossiblePoints)*100 : 0}))
+        .sort((a,b) => a.accuracy - b.accuracy);
+    const qRows = qa.map(q => {
+        const diff = q.accuracy < 40 ? 'Very Hard' : q.accuracy < 70 ? 'Medium' : 'Easy';
+        const dc   = q.accuracy < 40 ? '#721c24' : q.accuracy < 70 ? '#856404' : '#1a7a4a';
+        const db   = q.accuracy < 40 ? '#f8d7da' : q.accuracy < 70 ? '#fff3cd' : '#d4edda';
+        return `<tr>
+            <td style="text-align:center;font-weight:bold;">Q${q.questionNumber}</td>
+            <td style="text-align:center;background:${db};color:${dc};font-weight:bold;">${diff}</td>
+            <td style="text-align:center;">${q.accuracy.toFixed(1)}%</td>
+            <td style="text-align:center;">${q.correctCount}</td>
+            <td style="text-align:center;">${q.partialCount}</td>
+            <td style="text-align:center;">${q.incorrectCount}</td>
+            <td style="text-align:center;">${q.totalAttempts}</td>
+        </tr>`;
+    }).join('');
+
+    /* ── At-risk students ── */
+    const atRisk = sorted.filter(r => pct(r) < 50);
+    const atRiskRows = atRisk.length
+        ? atRisk.map(r => `<tr>
+            <td>${r['Student Name']||r['Name']||'—'}</td>
+            <td>${r['Quiz Name']||r['Quiz']||'—'}</td>
+            <td style="text-align:center;font-weight:bold;color:#721c24;">${pct(r).toFixed(1)}%</td>
+          </tr>`).join('')
+        : '<tr><td colspan="3" style="text-align:center;color:#1a7a4a;">No at-risk students — great result!</td></tr>';
+
+    /* ── Build the print window ── */
+    const w = window.open('', '_blank', 'width=1050,height=800');
+    w.document.write(`<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Class Report — ${now}</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; color:#222; background:#fff; padding:30px; font-size:13px; }
+  .cover { text-align:center; padding:30px 0 25px; border-bottom:3px solid #f5af19; margin-bottom:28px; }
+  .cover h1 { font-size:1.9em; color:#f12711; margin-bottom:6px; }
+  .cover h2 { font-size:1.2em; color:#555; font-weight:normal; margin-bottom:10px; }
+  .cover .meta { font-size:.95em; color:#888; }
+  .section { margin-bottom:28px; }
+  .section-title { font-size:1.1em; font-weight:bold; color:#f12711; border-bottom:2px solid #f5af19; padding-bottom:6px; margin-bottom:14px; }
+  .stats-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin-bottom:10px; }
+  .stat-box { background:#f8f9fa; border:1px solid #dee2e6; border-radius:8px; padding:12px; text-align:center; }
+  .stat-box .val { font-size:1.5em; font-weight:bold; color:#f12711; }
+  .stat-box .lbl { font-size:.8em; color:#666; margin-top:3px; }
+  .grade-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+  .grade-box { border-radius:8px; padding:12px; text-align:center; }
+  .grade-box .g { font-size:1.6em; font-weight:bold; }
+  .grade-box .n { font-size:1.3em; margin-top:4px; }
+  .grade-box .lbl { font-size:.8em; margin-top:2px; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th { background:linear-gradient(135deg,#f5af19,#f12711); color:white; padding:8px 10px; text-align:left; }
+  td { padding:7px 10px; border-bottom:1px solid #e9ecef; }
+  tr:nth-child(even) td { background:#fafafa; }
+  .print-btn { position:fixed; top:20px; right:20px; padding:10px 20px; background:linear-gradient(135deg,#6c3483,#9b59b6); color:white; border:none; border-radius:8px; font-size:1em; font-weight:bold; cursor:pointer; }
+  .footer { text-align:center; margin-top:30px; padding-top:15px; border-top:2px solid #f5af19; color:#888; font-size:.85em; }
+  @media print {
+    .print-btn { display:none; }
+    body { padding:15px; }
+    .section { page-break-inside:avoid; }
+  }
+</style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+
+<div class="cover">
+  <h1>Dr. Amin Elkhayyat</h1>
+  <h2>Student Quiz Results — Class Report</h2>
+  <div class="meta">${filterLabel} &nbsp;|&nbsp; ${data.length} attempt(s) &nbsp;|&nbsp; Generated: ${now}</div>
+</div>
+
+<!-- OVERVIEW STATS -->
+<div class="section">
+  <div class="section-title">📊 Overview Statistics</div>
+  <div class="stats-grid">
+    <div class="stat-box"><div class="val">${data.length}</div><div class="lbl">Total Attempts</div></div>
+    <div class="stat-box"><div class="val">${avg.toFixed(1)}%</div><div class="lbl">Class Average</div></div>
+    <div class="stat-box"><div class="val">${passR.toFixed(1)}%</div><div class="lbl">Pass Rate</div></div>
+    <div class="stat-box"><div class="val">${avgMin}m</div><div class="lbl">Avg Time</div></div>
+    <div class="stat-box"><div class="val">${hi.toFixed(1)}%</div><div class="lbl">Highest Score</div></div>
+    <div class="stat-box"><div class="val">${lo.toFixed(1)}%</div><div class="lbl">Lowest Score</div></div>
+  </div>
+</div>
+
+<!-- GRADE BANDS -->
+<div class="section">
+  <div class="section-title">🎓 Grade Distribution</div>
+  <div class="grade-grid">
+    <div class="grade-box" style="background:#d4edda;color:#155724;"><div class="g">A</div><div class="n">${bands.A}</div><div class="lbl">≥ 90%</div></div>
+    <div class="grade-box" style="background:#cce5ff;color:#004085;"><div class="g">B</div><div class="n">${bands.B}</div><div class="lbl">80–89%</div></div>
+    <div class="grade-box" style="background:#fff3cd;color:#856404;"><div class="g">C</div><div class="n">${bands.C}</div><div class="lbl">70–79%</div></div>
+    <div class="grade-box" style="background:#fde8d8;color:#7d3c00;"><div class="g">D</div><div class="n">${bands.D}</div><div class="lbl">60–69%</div></div>
+    <div class="grade-box" style="background:#f8d7da;color:#721c24;"><div class="g">F</div><div class="n">${bands.F}</div><div class="lbl">< 60%</div></div>
+  </div>
+</div>
+
+<!-- STUDENT RESULTS -->
+<div class="section">
+  <div class="section-title">👥 Full Student Results (ranked by score)</div>
+  <table>
+    <thead><tr><th>#</th><th>Student Name</th><th>Quiz</th><th>Score %</th><th>Points</th><th>Status</th><th>Time</th><th>Date</th></tr></thead>
+    <tbody>${studentRows}</tbody>
+  </table>
+</div>
+
+<!-- QUESTION ANALYTICS -->
+${qa.length ? `
+<div class="section">
+  <div class="section-title">🎯 Question Difficulty Analysis</div>
+  <table>
+    <thead><tr><th>Question</th><th>Difficulty</th><th>Accuracy</th><th>Correct</th><th>Partial</th><th>Incorrect</th><th>Total Attempts</th></tr></thead>
+    <tbody>${qRows}</tbody>
+  </table>
+</div>` : ''}
+
+<!-- AT-RISK STUDENTS -->
+<div class="section">
+  <div class="section-title">🚨 At-Risk Students (score below 50%)</div>
+  <table>
+    <thead><tr><th>Student Name</th><th>Quiz</th><th>Score %</th></tr></thead>
+    <tbody>${atRiskRows}</tbody>
+  </table>
+</div>
+
+<div class="footer" style="display:flex;justify-content:space-between;align-items:center;">
+  <span style="font-style:italic;">Best Wishes</span>
+  <span>Confidential — Dr. Amin Elkhayyat's Students' Dashboard &nbsp;|&nbsp; ${now}</span>
+  <span style="font-weight:bold;">Dr. Amin Elkhayyat</span>
+</div>
+
+<script>window.onload = function(){ window.focus(); }<\/script>
+</body></html>`);
+    w.document.close();
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   EXPORT
+══════════════════════════════════════════════════════════════════════════ */
+function exportStatisticsToExcel() {
+    const wb = XLSX.utils.book_new();
+    const ws1 = XLSX.utils.aoa_to_sheet([
+        ["Dr. Amin Elkhayyat's Students' Results"],['IELTS Reading Baseline Test'],[''],
+        ['Statistic','Value'],
+        ['Total Attempts',document.getElementById('totalStudents').textContent],
+        ['Average Score',document.getElementById('avgScore').textContent],
+        ['Pass Rate',document.getElementById('passRate').textContent],
+        ['Average Time',document.getElementById('avgTime').textContent],
+        ['Highest Score',document.getElementById('highestScore').textContent],
+        ['Lowest Score',document.getElementById('lowestScore').textContent]
+    ]);
+    XLSX.utils.book_append_sheet(wb, ws1, 'Overview');
+    const qa = Object.values(questionStats).map(q=>({...q,accuracy:q.maxPossiblePoints>0?(q.totalPoints/q.maxPossiblePoints)*100:0})).sort((a,b)=>a.accuracy-b.accuracy);
+    const ws2 = XLSX.utils.aoa_to_sheet([
+        ['Question','Difficulty','Accuracy','Attempts','Correct','Partial','Incorrect','Avg Points','Success Rate'],
+        ...qa.map(q=>[
+            'Q'+q.questionNumber,
+            q.accuracy<40?'Very Hard':q.accuracy<70?'Medium':'Easy',
+            q.accuracy.toFixed(1)+'%',q.totalAttempts,q.correctCount,q.partialCount,q.incorrectCount,
+            q.totalAttempts>0?(q.totalPoints/q.totalAttempts).toFixed(1):'0',
+            q.totalAttempts>0?((q.correctCount/q.totalAttempts)*100).toFixed(0)+'%':'0%'
+        ])
+    ]);
+    XLSX.utils.book_append_sheet(wb, ws2, 'Question Analytics');
+    XLSX.writeFile(wb, 'Statistics_Report_'+new Date().toISOString().split('T')[0]+'.xlsx');
+}
+
+function exportQuestionAnalyticsToExcel() {
+    const qa = Object.values(questionStats).map(q=>({...q,accuracy:q.maxPossiblePoints>0?(q.totalPoints/q.maxPossiblePoints)*100:0})).sort((a,b)=>a.accuracy-b.accuracy);
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.aoa_to_sheet([
+        ['Question Difficulty Analysis'],["Dr. Amin Elkhayyat's IELTS Reading Baseline Test"],[''],
+        ['Question','Difficulty','Accuracy','Attempts','Correct','Partial','Incorrect','Avg Points','Success Rate','Question Text'],
+        ...qa.map(q=>[
+            'Q'+q.questionNumber,
+            q.accuracy<40?'Very Hard':q.accuracy<70?'Medium':'Easy',
+            q.accuracy.toFixed(1)+'%',q.totalAttempts,q.correctCount,q.partialCount,q.incorrectCount,
+            q.totalAttempts>0?(q.totalPoints/q.totalAttempts).toFixed(1):'0',
+            q.totalAttempts>0?((q.correctCount/q.totalAttempts)*100).toFixed(0)+'%':'0%',
+            q.questionText
+        ])
+    ]);
+    XLSX.utils.book_append_sheet(wb, ws, 'Question Analytics');
+    XLSX.writeFile(wb, 'Question_Analytics_'+new Date().toISOString().split('T')[0]+'.xlsx');
+}
+
+function exportPerformanceToExcel() {
+    const wb = XLSX.utils.book_new();
+    const scores = currentFilteredData.map(pct);
+    const avg    = scores.reduce((s,v)=>s+v,0)/scores.length;
+    const sorted = [...currentFilteredData].sort((a,b)=>pct(b)-pct(a));
+    const ws1 = XLSX.utils.aoa_to_sheet([
+        ["Student Performance Report — Dr. Amin Elkhayyat"],[''],
+        ['Rank','Student Name','Quiz','Score %','Grade','Status','Time Spent','vs Class Avg'],
+        ...sorted.map((r,i)=>{
+            const p=pct(r), g=p>=90?'A':p>=80?'B':p>=70?'C':p>=60?'D':'F';
+            return [i+1,r['Student Name']||'N/A',r['Quiz Name']||r['Quiz']||'N/A',p.toFixed(1)+'%',g,r['Status']||'N/A',r['Time Spent']||'N/A',(p-avg>=0?'+':'')+((p-avg).toFixed(1))+'%'];
+        })
+    ]);
+    XLSX.utils.book_append_sheet(wb, ws1, 'Ranked Results');
+
+    const atRisk = currentFilteredData.filter(r=>pct(r)<50).sort((a,b)=>pct(a)-pct(b));
+    const ws2 = XLSX.utils.aoa_to_sheet([
+        ['Students At Risk (Below 50%)'],[''],
+        ['Student','Quiz','Score %','Gap to 50%','Status'],
+        ...atRisk.map(r=>[r['Student Name']||'N/A',r['Quiz Name']||r['Quiz']||'N/A',pct(r).toFixed(1)+'%',(50-pct(r)).toFixed(1)+'%',r['Status']||'N/A'])
+    ]);
+    XLSX.utils.book_append_sheet(wb, ws2, 'At Risk Students');
+    XLSX.writeFile(wb, 'Student_Performance_'+new Date().toISOString().split('T')[0]+'.xlsx');
+}
+
+function exportToCSV() {
+    if (!currentFilteredData.length) { alert('No data to export'); return; }
+    const h = Object.keys(currentFilteredData[0]);
+    const csv = [h.join(','), ...currentFilteredData.map(r=>h.map(k=>JSON.stringify(r[k]||'')).join(','))].join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+    a.download = 'quiz-results-'+new Date().toISOString().split('T')[0]+'.csv';
+    a.click();
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   STUDENT DETAIL MODAL
+   When the Apps Script omits column J (Detailed Results), we fall back to
+   fetching it directly from the Google Sheet via the Visualization API.
+══════════════════════════════════════════════════════════════════════════ */
+
+/* Sheet ID extracted from the Google Sheet URL shared by the teacher */
+const _GSHEET_ID = '1n0of4aOE1qbgSTmYjc0pCiAvuX3jqBulex9tS7B8cEs';
+
+/* ══════════════════════════════════════════════════════════════════════════
+   JSONP HELPER — works from file:// AND http:// origins.
+   fetch() is blocked by CORS when the page is opened as a local file,
+   but <script> tag injection bypasses CORS entirely.
+   The Google Sheets gviz/tq endpoint supports JSONP via responseHandler.
+══════════════════════════════════════════════════════════════════════════ */
+function _gvizJsonp(tq) {
+    return new Promise((resolve, reject) => {
+        const cbName = '_gvizCb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+        const script = document.createElement('script');
+        let done = false;
+
+        function cleanup() {
+            done = true;
+            delete window[cbName];
+            if (script.parentNode) script.parentNode.removeChild(script);
+        }
+
+        window[cbName] = function(data) {
+            cleanup();
+            resolve(data);
+        };
+
+        script.onerror = function() {
+            if (done) return;
+            cleanup();
+            reject(new Error(
+                'Could not load sheet data. Make sure the Google Sheet is set to ' +
+                '"Anyone with the link can view" (Share → Anyone with the link → Viewer).'
+            ));
+        };
+
+        // Timeout after 15 seconds
+        const timer = setTimeout(() => {
+            if (done) return;
+            cleanup();
+            reject(new Error('Timed out fetching sheet data (15 s). Check your internet connection.'));
+        }, 15000);
+
+        const url = `https://docs.google.com/spreadsheets/d/${_GSHEET_ID}/gviz/tq` +
+                    `?tqx=responseHandler:${cbName}` +
+                    `&tq=${encodeURIComponent(tq)}`;
+        script.src = url;
+        document.head.appendChild(script);
+    });
+}
+
+/* ── Parse gviz date strings like "Date(2026,4,17,8,40,37)" ── */
+function _gvizDate(v) {
+    if (!v) return null;
+    const dm = String(v).match(/Date\((\d+),(\d+),(\d+),?(\d*),?(\d*),?(\d*)\)/);
+    if (dm) return new Date(+dm[1], +dm[2], +dm[3], +(dm[4]||0), +(dm[5]||0), +(dm[6]||0));
+    const d = new Date(String(v));
+    return isNaN(d) ? null : d;
+}
+
+/* ── Extract XML rows from a gviz data table (columns A, C, J) ── */
+function _parseGvizTable(data) {
+    const byEmailTs = new Map();
+    const byEmail   = new Map();
+    const allXml    = [];
+
+    if (!data || !data.table || !data.table.rows) return { byEmailTs, byEmail, allXml };
+
+    for (const r of data.table.rows) {
+        if (!r.c) continue;
+        const jCell = r.c[2];
+        if (!jCell || !jCell.v) continue;
+        const xml = String(jCell.v).trim();
+        if (!xml || (!xml.startsWith('<') && !xml.startsWith('<?'))) continue;
+
+        allXml.push(xml);
+
+        const email = (r.c[1] && r.c[1].v) ? String(r.c[1].v).trim().toLowerCase() : '';
+        const rowDate = _gvizDate(r.c[0] && r.c[0].v);
+        const tsMin   = rowDate ? Math.floor(rowDate.getTime() / 60000).toString() : '';
+
+        if (email && tsMin) byEmailTs.set(email + '|' + tsMin, xml);
+        if (email && !byEmail.has(email)) byEmail.set(email, xml);
+    }
+
+    return { byEmailTs, byEmail, allXml };
+}
+
+/* ── Pre-fetch ALL of column J in one background JSONP call ─────────────────
+   Silently populates row['Detailed Results'] for rows where the Apps Script
+   did not include it. Does not block the UI.                                 */
+async function _prefetchAllDetailedResults(rows) {
+    if (!rows || !rows.length) return;
+    const needsFetch = rows.some(r => !(r['Detailed Results'] || r['Details'] || '').trim());
+    if (!needsFetch) return;
+
+    let data;
+    try { data = await _gvizJsonp('select A,C,J'); } catch(e) { return; }
+
+    const { byEmailTs, byEmail } = _parseGvizTable(data);
+
+    rows.forEach(row => {
+        if ((row['Detailed Results'] || row['Details'] || '').trim()) return;
+        const email = (row['Email'] || row['Student Email'] || '').trim().toLowerCase();
+        const ts    = row['Timestamp'] || row['Date & Time'] || '';
+        let tsMin   = '';
+        if (ts) { const d = new Date(ts); if (!isNaN(d)) tsMin = Math.floor(d.getTime() / 60000).toString(); }
+
+        const xml = (email && tsMin && byEmailTs.get(email + '|' + tsMin))
+                 || (email && byEmail.get(email))
+                 || '';
+        if (xml) row['Detailed Results'] = xml;
+    });
+
+    enrichDataWithQuizNames(rows);
+}
+
+/* ── Per-row fallback: fetch column J for one specific student ──────────────
+   Used inside showDetails() when the row is still missing XML after the
+   background pre-fetch (or if the pre-fetch hasn't finished yet).            */
+async function _fetchDetailedResultsFromSheet(row) {
+    const email = (row['Email'] || row['Student Email'] || '').trim();
+    const ts    = row['Timestamp'] || row['Date & Time'] || '';
+
+    let tq = 'select A,C,J';
+    if (email) tq += ` where C='${email.replace(/'/g, "\\'")}'`;
+
+    const data = await _gvizJsonp(tq);
+    const { byEmailTs, byEmail, allXml } = _parseGvizTable(data);
+
+    if (!allXml.length) return null;
+
+    const tsDate = ts ? new Date(ts) : null;
+    const tsMin  = tsDate ? Math.floor(tsDate.getTime() / 60000).toString() : '';
+
+    return (email && tsMin && byEmailTs.get(email + '|' + tsMin))
+        || (email && byEmail.get(email))
+        || allXml[0]
+        || null;
+}
+
+function showDetails(index) {
+    const row = currentDisplayedData[index] || currentFilteredData[index];
+    currentStudentData = row;
+
+    const modal     = document.getElementById('detailsModal');
+    const modalBody = document.getElementById('modalBody');
+
+    const detailedXML   = row['Detailed Results'] || row['Details'] || '';
+    const parsedDetails = parseXMLDetails(detailedXML);
+
+    modalBody.innerHTML = `
+        <h2 style="color:#f5af19;margin-bottom:20px;font-weight:bold;">${row['Student Name'] || 'Student'}</h2>
+        <div style="background:#fff9f0;padding:15px;border-radius:5px;margin-bottom:20px;border:2px solid #f5af19;">
+            <p><strong>Email:</strong> ${row['Email'] || row['Student Email'] || 'N/A'}</p>
+            <p><strong>Date:</strong> ${new Date(row['Timestamp'] || row['Date & Time']).toLocaleString()}</p>
+            <p><strong>Score:</strong> ${row['Score'] || '0'} / ${row['Max Score'] || row['Maximum Score'] || '0'} (${row['Percentage'] || '0%'})</p>
+            <p><strong>Status:</strong> ${row['Status'] || 'N/A'}</p>
+            <p><strong>Time Spent:</strong> ${row['Time Spent'] || 'N/A'}</p>
+        </div>
+        ${parsedDetails}
+    `;
+
+    modal.style.display = 'flex';
+}
+
+function printIndividualReport(i) { showDetails(i); setTimeout(printStudentReport, 500); }
+function closeModal() { document.getElementById('detailsModal').style.display='none'; currentStudentData=null; }
+
+function printStudentReport() {
+    if (!currentStudentData) return;
+    const sd       = currentStudentData;
+    const quizName = sd['Quiz Name'] || sd['Quiz Title'] || sd['Quiz'] || 'Student Quiz Report';
+    const studName = sd['Student Name'] || sd['Name'] || 'Student';
+    const pctVal   = parseFloat(sd['Percentage'] || '0').toFixed(1);
+    const status   = sd['Status'] || 'N/A';
+    const statusColor = status === 'Pass' ? '#155724' : '#721c24';
+    const statusBg    = status === 'Pass' ? '#d4edda'  : '#f8d7da';
+
+    // ── Summary block ────────────────────────────────────────────────
+    const summaryHtml = `
+    <div class="summary-section">
+        <h3 style="color:#f5af19;margin-bottom:14px;font-weight:bold;">📋 Quiz Summary</h3>
+        <div class="summary-grid">
+            <div class="summary-item"><strong>Student</strong>${studName}</div>
+            <div class="summary-item"><strong>Email</strong>${sd['Email']||sd['Student Email']||'N/A'}</div>
+            <div class="summary-item"><strong>Quiz</strong>${quizName}</div>
+            <div class="summary-item"><strong>Date</strong>${new Date(sd['Timestamp']||sd['Date & Time']||'').toLocaleString()}</div>
+            <div class="summary-item"><strong>Score</strong>${sd['Score']||'0'} / ${sd['Max Score']||sd['Maximum Score']||'0'}</div>
+            <div class="summary-item"><strong>Percentage</strong>${pctVal}%</div>
+            <div class="summary-item"><strong>Time Spent</strong>${sd['Time Spent']||'—'}</div>
+            <div class="summary-item" style="background:${statusBg};"><strong style="color:${statusColor};">Status</strong><span style="font-weight:bold;color:${statusColor};">${status === 'Pass' ? '✓ Pass' : '✗ Fail'}</span></div>
+        </div>
+    </div>`;
+
+    // ── Question details ─────────────────────────────────────────────
+    const xml         = sd['Detailed Results'] || sd['Details'] || '';
+    const questionsHtml = buildPrintQuestions(xml);
+
+    const pw = window.open('', '_blank', 'width=1050,height=800');
+    pw.document.write(`<!DOCTYPE html><html><head><title>Student Quiz Report — ${studName}</title><style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:13px;color:#222;background:#fff;padding:28px;}
+        .report-header{border-bottom:3px solid #f5af19;margin-bottom:22px;padding-bottom:12px;text-align:center;}
+        .report-header .quiz-title{font-size:1.45em;font-weight:bold;color:#f12711;margin-bottom:5px;}
+        .report-header .student-name{font-size:1.15em;color:#333;font-weight:bold;}
+        .summary-section{background:#fff9f0;padding:18px;border-radius:8px;margin-bottom:22px;border:2px solid #f5af19;}
+        .summary-section h3{color:#f5af19;margin-bottom:12px;font-weight:bold;font-size:1em;}
+        .summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+        .summary-item{background:white;padding:10px 12px;border-radius:5px;border:1px solid #f0e8d8;}
+        .summary-item strong{color:#f5af19;display:block;margin-bottom:3px;font-size:.82em;text-transform:uppercase;letter-spacing:.4px;}
+        .questions-title{font-size:1.05em;font-weight:bold;color:#f5af19;border-bottom:2px solid #f5af19;padding-bottom:6px;margin-bottom:14px;}
+        .question-block{margin-bottom:16px;padding:14px;border-radius:8px;border-left:4px solid #f5af19;background:#fff9f0;page-break-inside:avoid;}
+        .question-block.correct{border-left-color:#28a745;background:#f0f9f4;}
+        .question-block.incorrect{border-left-color:#dc3545;background:#fff5f5;}
+        .question-block.partial{border-left-color:#ffc107;background:#fffbf0;}
+        .q-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+        .q-num{font-weight:bold;color:#333;font-size:1em;}
+        .q-badges{display:flex;gap:6px;align-items:center;}
+        .badge{padding:3px 10px;border-radius:12px;font-size:.8em;font-weight:bold;}
+        .badge-correct{background:#28a745;color:white;}
+        .badge-incorrect{background:#dc3545;color:white;}
+        .badge-partial{background:#ffc107;color:#333;}
+        .badge-pts{background:#667eea;color:white;}
+        .q-text{font-style:italic;color:#666;margin-bottom:10px;line-height:1.5;font-size:.9em;}
+        .answer-comparison{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+        .answer-box{padding:10px 12px;border-radius:6px;border:2px solid;}
+        .student-answer{border-color:#dc3545;background:#fff5f5;}
+        .student-answer-correct{border-color:#28a745;background:#f0f9f4;}
+        .correct-answer-box{border-color:#28a745;background:#f0f9f4;}
+        .answer-label{font-weight:bold;font-size:.82em;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;}
+        .answer-label.wrong{color:#dc3545;}
+        .answer-label.right{color:#28a745;}
+        .answer-value{font-size:.95em;color:#333;}
+        .report-footer{display:flex;justify-content:space-between;align-items:center;border-top:2px solid #f5af19;margin-top:28px;padding-top:12px;font-size:.9em;color:#555;}
+        .footer-left{font-style:italic;}
+        .footer-right{font-weight:bold;color:#f12711;}
+        @media print{body{padding:15px;}.question-block{page-break-inside:avoid;}}
+    </style></head><body>
+        <div class="report-header">
+            <div class="quiz-title">${quizName}</div>
+            <div class="student-name">${studName}</div>
+        </div>
+        ${summaryHtml}
+        ${questionsHtml}
+        <div class="report-footer">
+            <span class="footer-left">Best Wishes</span>
+            <span class="footer-right">Dr. Amin Elkhayyat</span>
+        </div>
+    </body></html>`);
+    pw.document.close();
+    pw.onload = () => { pw.focus(); pw.print(); };
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BUILD PRINT QUESTIONS
+   The iSpring XML uses a default namespace which breaks querySelectorAll.
+   Strategy:
+     Step 1 — Strip all namespace declarations so selectors work normally.
+     Step 2 — Parse with DOMParser (XML mode first, HTML mode as fallback).
+     Step 3 — Pure-regex extraction if DOM parsing still finds nothing.
+   Falls back to a formatted raw-XML display as the absolute last resort.
+══════════════════════════════════════════════════════════════════════════ */
+
+/* Remove namespace declarations and xsi attributes so CSS selectors work */
+function _stripNamespaces(xml) {
+    return xml
+        .replace(/\s+xmlns(?::[a-zA-Z0-9_-]+)?="[^"]*"/g, '')
+        .replace(/\s+xsi:[a-zA-Z0-9_-]+="[^"]*"/g, '');
+}
+
+/* Case-insensitive attribute getter (handles XML camelCase vs HTML lowercase) */
+function _ga(el, name) {
+    return el.getAttribute(name) || el.getAttribute(name.toLowerCase()) || null;
+}
+
+function buildPrintQuestions(xml) {
+    const raw = (xml || '').toString().trim();
+    if (!raw || raw === 'N/A') {
+        return '<p style="color:#999;font-style:italic;padding:10px 0;">No detailed question data is available for this attempt.</p>';
+    }
+
+    // Strip namespaces so querySelectorAll works correctly
+    const clean = _stripNamespaces(raw);
+
+    // ── Try XML mode ──────────────────────────────────────────────
+    let qs = null;
+    try {
+        const docX = new DOMParser().parseFromString(clean, 'text/xml');
+        if (!docX.querySelector('parsererror')) {
+            qs = _findQuestions(docX);
+        }
+    } catch(e) {}
+
+    // ── Try HTML mode (more lenient) ──────────────────────────────
+    if (!qs || !qs.length) {
+        try {
+            const docH = new DOMParser().parseFromString(clean, 'text/html');
+            qs = _findQuestions(docH);
+        } catch(e) {}
+    }
+
+    // ── Regex fallback ────────────────────────────────────────────
+    if (!qs || !qs.length) return _buildQuestionsFromRegex(raw);
+
+    return _renderQuestionNodes(qs);
+}
+
+function _findQuestions(doc) {
+    // 1. Ideal: direct children of <questions>
+    let qs = doc.querySelectorAll('questions > *');
+    if (qs.length) return qs;
+
+    // 2. getElementsByTagName ignores namespaces (works even if strip failed)
+    const qEl = doc.getElementsByTagName('questions')[0];
+    if (qEl && qEl.children.length) return qEl.children;
+
+    // 3. Any element with a status attribute (correct/incorrect/partially)
+    qs = doc.querySelectorAll('[status="correct"],[status="incorrect"],[status="partially"],[status="incorrect"],[status="partial"]');
+    if (qs.length) return qs;
+
+    // 4. Any element with awardedPoints
+    qs = doc.querySelectorAll('[awardedPoints],[awardedpoints]');
+    if (qs.length) return qs;
+
+    return null;
+}
+
+function _renderQuestionNodes(qs) {
+    let html = '<div class="questions-title">📝 Question-by-Question Breakdown</div>';
+    let n = 1;
+    Array.from(qs).forEach(q => {
+        const st  = (_ga(q,'status') || '').toLowerCase();
+        const pts = _ga(q,'awardedPoints') || _ga(q,'awardedpoints') || '0';
+        const mp  = _ga(q,'maxPoints')     || _ga(q,'maxpoints')     || '1';
+        const qt  = (q.tagName || '').toLowerCase();
+
+        const blockClass = st === 'correct' ? 'correct' : st === 'incorrect' ? 'incorrect' : (st === 'partially' || st === 'partial') ? 'partial' : '';
+        const badgeClass = st === 'correct' ? 'badge-correct' : st === 'incorrect' ? 'badge-incorrect' : 'badge-partial';
+        const badgeLabel = st === 'correct' ? '✓ Correct' : st === 'incorrect' ? '✗ Incorrect' : '◐ Partial';
+
+        // Direction text (iSpring wraps in <direction><text>...</text></direction>)
+        const dirEl   = q.querySelector('direction text') || q.querySelector('direction');
+        const dirText = dirEl ? `<div class="q-text">${dirEl.textContent.trim()}</div>` : '';
+
+        // Details block contains <text> labels and <blank> answer pairs
+        const det = q.querySelector('details');
+        let answerHtml = '';
+        if (det) {
+            // iSpring uses <blank userAnswerIndex/correctAnswerIndex> for MC
+            // and <blank userAnswer correct> for FIB — detect by first blank
+            const firstBlank = det.querySelector('blank');
+            const isFIB = firstBlank && (_ga(firstBlank,'userAnswer') !== null);
+            answerHtml = isFIB ? _renderFIBAnswers(det) : _renderMCAnswers(det);
+        }
+
+        html += `
+        <div class="question-block ${blockClass}">
+            <div class="q-header">
+                <span class="q-num">Question ${n}</span>
+                <span class="q-badges">
+                    <span class="badge ${badgeClass}">${badgeLabel}</span>
+                    <span class="badge badge-pts">${pts} / ${mp} pts</span>
+                </span>
+            </div>
+            ${dirText}
+            ${answerHtml || '<div style="color:#aaa;font-size:.88em;font-style:italic;margin-top:6px;">Answer details not available for this question type.</div>'}
+        </div>`;
+        n++;
+    });
+    return html;
+}
+
+function _renderMCAnswers(det) {
+    const texts  = Array.from(det.querySelectorAll('text'));
+    const blanks = Array.from(det.querySelectorAll('blank'));
+    if (!blanks.length) return '';
+
+    // Pair each blank with the text at the same index (skip blank-only texts)
+    const pairs = [];
+    let ti = 0;
+    blanks.forEach(b => {
+        const label = (texts[ti] && texts[ti].textContent.trim()) ? texts[ti].textContent.trim() : '';
+        ti++;
+
+        const ui  = _ga(b,'userAnswerIndex');
+        const ci  = _ga(b,'correctAnswerIndex');
+        const ans = Array.from(b.querySelectorAll('answer'));
+        const sa  = (ui !== null && ans[parseInt(ui)]) ? ans[parseInt(ui)].textContent.trim() : 'Not answered';
+        const ca  = (ci !== null && ans[parseInt(ci)]) ? ans[parseInt(ci)].textContent.trim() : 'N/A';
+        const ok  = ui !== null && ui === ci;
+        pairs.push(_twoColRow(label, sa, ca, ok));
+    });
+    return pairs.join('');
+}
+
+function _renderFIBAnswers(det) {
+    const texts  = Array.from(det.querySelectorAll('text'));
+    const blanks = Array.from(det.querySelectorAll('blank'));
+    if (!blanks.length) return '';
+
+    const pairs = [];
+    let ti = 0;
+    blanks.forEach(b => {
+        const label = (texts[ti] && texts[ti].textContent.trim()) ? texts[ti].textContent.trim() : '';
+        ti++;
+
+        const ua  = _ga(b,'userAnswer') || '';
+        const ok  = _ga(b,'correct') === 'true';
+        const cas = Array.from(b.querySelectorAll('answer')).map(a => a.textContent.trim()).filter(Boolean).join(' / ') || 'N/A';
+        pairs.push(_twoColRow(label, ua || 'Not answered', cas, ok));
+    });
+    return pairs.join('');
+}
+
+function _twoColRow(label, studentAns, correctAns, isCorrect) {
+    const saClass = isCorrect ? 'student-answer-correct' : 'student-answer';
+    const saIcon  = isCorrect ? '✓' : '✗';
+    const lblClass= isCorrect ? 'right' : 'wrong';
+    // Escape HTML in answer text to prevent rendering issues
+    const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return `
+    <div style="margin-bottom:12px;">
+        ${label ? `<div style="font-size:.85em;color:#444;margin-bottom:6px;font-weight:600;">${esc(label)}</div>` : ''}
+        <div class="answer-comparison">
+            <div class="answer-box ${saClass}">
+                <span class="answer-label ${lblClass}">${saIcon} Student Answer</span>
+                <span class="answer-value">${esc(studentAns)}</span>
+            </div>
+            <div class="answer-box correct-answer-box">
+                <span class="answer-label right">✓ Correct Answer</span>
+                <span class="answer-value">${esc(correctAns)}</span>
+            </div>
+        </div>
+    </div>`;
+}
+
+/* ── Regex fallback — works without any DOM parser ──────────────────────── */
+function _buildQuestionsFromRegex(xml) {
+    let html = '<div class="questions-title">📝 Question-by-Question Breakdown</div>';
+    let n = 0;
+
+    // iSpring question element names all end in "Question"
+    const qRx = /<([A-Za-z]+Question)\b([^>]*)>([\s\S]*?)<\/\1>/g;
+    let m;
+    while ((m = qRx.exec(xml)) !== null) {
+        n++;
+        const tagAttrs = m[2];
+        const inner    = m[3];
+
+        const st  = (_rxAttr(tagAttrs,'status') || '').toLowerCase();
+        const pts = _rxAttr(tagAttrs,'awardedPoints') || '0';
+        const mp  = _rxAttr(tagAttrs,'maxPoints')     || '1';
+
+        const blockClass = st === 'correct' ? 'correct' : st === 'incorrect' ? 'incorrect' : (st === 'partially'||st==='partial') ? 'partial' : '';
+        const badgeClass = st === 'correct' ? 'badge-correct' : st === 'incorrect' ? 'badge-incorrect' : 'badge-partial';
+        const badgeLabel = st === 'correct' ? '✓ Correct' : st === 'incorrect' ? '✗ Incorrect' : '◐ Partial';
+
+        // Direction text (strips CDATA markers)
+        const dirM   = /<direction[^>]*>[\s\S]*?<text[^>]*>([\s\S]*?)<\/text>/i.exec(inner);
+        const dirRaw = dirM ? dirM[1].replace(/<!\[CDATA\[/gi,'').replace(/\]\]>/gi,'').trim() : '';
+        const dirTxt = dirRaw ? `<div class="q-text">${dirRaw}</div>` : '';
+
+        // Details block
+        const detM = /<details[^>]*>([\s\S]*?)<\/details>/i.exec(inner);
+        let ansHtml = '';
+        if (detM) {
+            const di = detM[1];
+            // Collect all <text> labels
+            const txts = [];
+            const txRx = /<text[^>]*>([\s\S]*?)<\/text>/gi;
+            let tx;
+            while ((tx = txRx.exec(di)) !== null) {
+                txts.push(tx[1].trim());
+            }
+
+            // Collect all <blank> elements
+            const blRx = /<blank\b([^>]*)>([\s\S]*?)<\/blank>/gi;
+            let bl, bi = 0;
+            while ((bl = blRx.exec(di)) !== null) {
+                const ba     = bl[1];
+                const bInner = bl[2];
+                const ua     = _rxAttr(ba,'userAnswer');
+                const ok     = _rxAttr(ba,'correct') === 'true';
+                const ui     = _rxAttr(ba,'userAnswerIndex');
+                const ci     = _rxAttr(ba,'correctAnswerIndex');
+                const ansEls = [...bInner.matchAll(/<answer[^>]*>([\s\S]*?)<\/answer>/gi)].map(a=>a[1].trim());
+
+                const label = txts[bi] || '';
+                let sa, ca, isOk;
+                if (ua !== null) {
+                    // Fill-in-the-blank
+                    sa = ua || 'Not answered';
+                    ca = ansEls.join(' / ') || 'N/A';
+                    isOk = ok;
+                } else {
+                    // Multiple choice
+                    sa   = (ui !== null && ansEls[parseInt(ui)]) ? ansEls[parseInt(ui)] : 'Not answered';
+                    ca   = (ci !== null && ansEls[parseInt(ci)]) ? ansEls[parseInt(ci)] : 'N/A';
+                    isOk = ui !== null && ui === ci;
+                }
+                ansHtml += _twoColRow(label, sa, ca, isOk);
+                bi++;
+            }
+        }
+
+        html += `
+        <div class="question-block ${blockClass}">
+            <div class="q-header">
+                <span class="q-num">Question ${n}</span>
+                <span class="q-badges">
+                    <span class="badge ${badgeClass}">${badgeLabel}</span>
+                    <span class="badge badge-pts">${pts} / ${mp} pts</span>
+                </span>
+            </div>
+            ${dirTxt}
+            ${ansHtml || '<div style="color:#aaa;font-size:.88em;font-style:italic;margin-top:6px;">Answer details not available.</div>'}
+        </div>`;
+    }
+
+    if (!n) {
+        // Absolute last resort: show raw XML in a scrollable box
+        return `<div class="questions-title">📋 Raw Question Data</div>
+        <pre style="background:#f8f9fa;border:1px solid #dee2e6;border-radius:6px;padding:14px;font-size:.75em;overflow:auto;max-height:400px;white-space:pre-wrap;word-break:break-all;">${xml.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>`;
+    }
+    return html;
+}
+
+function _rxAttr(attrString, name) {
+    const m = new RegExp(name + '=["\']([^"\']*)["\']').exec(attrString || '');
+    return m ? m[1] : null;
+}
+
+function exportStudentReportToExcel() {
+    if (!currentStudentData) return;
+    const qn = currentStudentData['Quiz Name']||currentStudentData['Quiz']||'N/A';
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.aoa_to_sheet([
+        ["Dr. Amin Elkhayyat's Students' Results"],[qn+' - Individual Report'],[''],
+        ['Student Name',currentStudentData['Student Name']||'N/A'],
+        ['Email',currentStudentData['Email']||currentStudentData['Student Email']||'N/A'],
+        ['Quiz Name',qn],
+        ['Date',new Date(currentStudentData['Timestamp']||currentStudentData['Date & Time']).toLocaleString()],
+        ['Score',currentStudentData['Score']+'/'+(currentStudentData['Max Score']||currentStudentData['Maximum Score'])],
+        ['Percentage',currentStudentData['Percentage']],
+        ['Status',currentStudentData['Status']],
+        ['Time Spent',currentStudentData['Time Spent']]
+    ]);
+    XLSX.utils.book_append_sheet(wb, ws, 'Student Report');
+    XLSX.writeFile(wb, (currentStudentData['Student Name']||'Student').replace(/[^a-z0-9]+/gi,'_')+'_Report_'+new Date().toISOString().split('T')[0]+'.xlsx');
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   XML PARSING (student detail modal) — copied from working reference file
+══════════════════════════════════════════════════════════════════════════ */
+function parseXMLDetails(xmlString) {
+    if (!xmlString || xmlString === 'N/A') {
+        return '<p>No detailed results available</p>';
+    }
+
+    try {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+
+        const summary  = xmlDoc.querySelector('summary');
+        const settings = xmlDoc.querySelector('quizSettings');
+        const questions = xmlDoc.querySelectorAll('questions > *');
+
+        let html = '<div class="summary-section">';
+        html += '<h3>📋 Quiz Summary</h3>';
+        html += '<div class="summary-grid">';
+
+        if (summary) {
+            html += `<div class="summary-item"><strong>Score</strong>${summary.getAttribute('score')} / ${settings ? settings.getAttribute('maxScore') : '?'}</div>`;
+            html += `<div class="summary-item"><strong>Percentage</strong>${summary.getAttribute('percent')}%</div>`;
+            html += `<div class="summary-item"><strong>Time</strong>${formatSeconds(summary.getAttribute('time'))}</div>`;
+            html += `<div class="summary-item"><strong>Status</strong>${summary.getAttribute('passed') === 'true' ? 'Passed ✓' : 'Failed ✗'}</div>`;
+        }
+
+        html += '</div></div>';
+
+        if (questions.length > 0) {
+            html += '<h3 style="margin-top: 25px; color: #f5af19; margin-bottom: 15px; font-weight: bold;">📝 Detailed Question Analysis</h3>';
+
+            let questionNum = 1;
+
+            questions.forEach((q) => {
+                const status    = q.getAttribute('status');
+                const points    = q.getAttribute('awardedPoints');
+                const maxPoints = q.getAttribute('maxPoints');
+                const qType     = q.tagName.toLowerCase();
+
+                let statusClass = 'question-item';
+                let badgeClass  = 'score-partial';
+                let statusText  = status;
+
+                if (status === 'correct') {
+                    statusClass = 'question-correct';
+                    badgeClass  = 'score-correct';
+                    statusText  = '✓ Correct';
+                } else if (status === 'incorrect') {
+                    statusClass = 'question-incorrect';
+                    badgeClass  = 'score-incorrect';
+                    statusText  = '✗ Incorrect';
+                } else if (status === 'partially') {
+                    statusClass = 'question-partial';
+                    badgeClass  = 'score-partial';
+                    statusText  = '◐ Partially Correct';
+                }
+
+                const direction = q.querySelector('direction text');
+                const details   = q.querySelector('details');
+
+                html += `<div class="${statusClass}">`;
+                html += `<div class="question-header-modal">`;
+                html += `Question ${questionNum}`;
+                html += `<span class="score-badge ${badgeClass}">${points}/${maxPoints} pts</span>`;
+                html += `<span class="score-badge ${badgeClass}">${statusText}</span>`;
+                html += `</div>`;
+
+                if (direction) {
+                    html += `<div class="question-text" style="font-style: italic; color: #666; margin-bottom: 10px;">${direction.textContent}</div>`;
+                }
+
+                if (details) {
+                    if (qType.includes('multiplechoice')) {
+                        html += parseMultipleChoiceDetails(details);
+                    } else if (qType.includes('fillintheblank')) {
+                        html += parseFillInBlankDetails(details);
+                    }
+                }
+
+                html += '</div>';
+                questionNum++;
+            });
+        }
+
+        return html;
+
+    } catch (e) {
+        console.error('XML Parse Error:', e);
+        return '<pre style="background:#f5f5f5;padding:15px;border-radius:5px;overflow-x:auto;max-height:400px;">' +
+               xmlString + '</pre>';
+    }
+}
+
+function parseMultipleChoiceDetails(details) {
+    let html = '';
+    const texts  = details.querySelectorAll('text');
+    const blanks = details.querySelectorAll('blank');
+
+    let blankIndex = 0;
+
+    texts.forEach((text, idx) => {
+        const currentText = text.textContent.trim();
+
+        if (currentText && idx < blanks.length) {
+            html += `<div style="margin: 10px 0;"><strong>${currentText}</strong></div>`;
+
+            const blank           = blanks[idx];
+            const userAnswerIdx   = blank.getAttribute('userAnswerIndex');
+            const correctAnswerIdx = blank.getAttribute('correctAnswerIndex');
+            const answers         = blank.querySelectorAll('answer');
+
+            if (answers.length > 0) {
+                const studentAnswer = userAnswerIdx !== null ? answers[parseInt(userAnswerIdx)]?.textContent : 'Not answered';
+                const correctAnswer = correctAnswerIdx !== null ? answers[parseInt(correctAnswerIdx)]?.textContent : 'N/A';
+                const isCorrect     = userAnswerIdx === correctAnswerIdx;
+
+                html += '<div class="answer-comparison">';
+                html += `<div class="answer-box ${isCorrect ? 'student-answer-correct' : 'student-answer'}">`;
+                html += `<span class="answer-label">${isCorrect ? '✓' : '✗'} Student Answer:</span>`;
+                html += studentAnswer || 'Not answered';
+                html += '</div>';
+                html += '<div class="answer-box correct-answer">';
+                html += '<span class="answer-label">✓ Correct Answer:</span>';
+                html += correctAnswer;
+                html += '</div>';
+                html += '</div>';
+            }
+
+            blankIndex++;
+        }
+    });
+
+    return html;
+}
+
+function parseFillInBlankDetails(details) {
+    let html = '';
+    const texts  = details.querySelectorAll('text');
+    const blanks = details.querySelectorAll('blank');
+
+    texts.forEach((text, idx) => {
+        const currentText = text.textContent.trim();
+
+        if (currentText && idx < blanks.length) {
+            html += `<div style="margin: 10px 0;"><strong>${currentText}</strong></div>`;
+
+            const blank      = blanks[idx];
+            const userAnswer = blank.getAttribute('userAnswer') || 'Not answered';
+            const isCorrect  = blank.getAttribute('correct') === 'true';
+
+            const correctAnswers = blank.querySelectorAll('answer');
+            let correctAnswerText = 'N/A';
+            if (correctAnswers.length > 0) {
+                correctAnswerText = Array.from(correctAnswers).map(a => a.textContent).join(' OR ');
+            }
+
+            html += '<div class="answer-comparison">';
+            html += `<div class="answer-box ${isCorrect ? 'student-answer-correct' : 'student-answer'}">`;
+            html += `<span class="answer-label">${isCorrect ? '✓' : '✗'} Student Answer:</span>`;
+            html += userAnswer;
+            html += '</div>';
+            html += '<div class="answer-box correct-answer">';
+            html += '<span class="answer-label">✓ Correct Answer:</span>';
+            html += correctAnswerText;
+            html += '</div>';
+            html += '</div>';
+        }
+    });
+
+    return html;
+}
+
+function formatSeconds(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}m ${secs}s`;
+}
+</script>
+<script src="https://replit-cdn.com/replit-pill/replit-pill.global.js" data-repl-id="ac9ab1b7-e072-4f18-be10-f3ddfc42785d"></script></body>
+</html>
